@@ -1,10 +1,13 @@
 #!/usr/bin/env python3
+"""matrix_shape function"""
+
+
 def matrix_shape(matrix):
-        """Function that calculates the shape of a matrix:"""
-        shape = []
-        while type(matrix) == list:
-                for arr in matrix:
-                        shape.append(len(matrix))
-                        matrix = arr
-                        break
-        return shape
+    """Function that calculates the shape of a matrix:"""
+    shape = []
+    while type(matrix) == list:
+        for arr in matrix:
+            shape.append(len(matrix))
+            matrix = arr
+            break
+    return shape

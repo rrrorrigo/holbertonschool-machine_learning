@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+"""add_matrices2D function"""
 
 
 def add_matrices2D(mat1, mat2):

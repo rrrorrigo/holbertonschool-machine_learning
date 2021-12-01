@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+"""matrix_transpose function"""
 
 
 def matrix_transpose(matrix):
