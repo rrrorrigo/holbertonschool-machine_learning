@@ -5,6 +5,8 @@ and those decisions are determined by our priorities"""
 
 def summation_i_squared(n):
     """ that calculates sum{i=1}^{n} i^2:"""
+    if type(n) is not int or n is None or n < 1:
+        return None
     if n == 1:
-        return 1
+        return n**2
     return summation_i_squared(n - 1) + n**2
