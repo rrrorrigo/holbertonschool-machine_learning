@@ -8,5 +8,5 @@ def summation_i_squared(n):
     if type(n) is not int or n is None or n < 1:
         return None
     if n == 1:
-        return n**2
-    return summation_i_squared(n - 1) + n**2
+        return int(n**2)
+    return int(summation_i_squared(n - 1) + n**2)
