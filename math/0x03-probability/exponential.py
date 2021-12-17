@@ -11,6 +11,8 @@ class Exponential:
         lambtha: is the expected number of occurences in a given time frame
         """
         self.lambtha = float(lambtha)
+        self.π = 3.1415926536
+        self.e = 2.7182818285
         if data is None:
             if lambtha < 0:
                 raise ValueError("lambtha must be a positive value")
@@ -20,3 +22,22 @@ class Exponential:
             if len(data) < 2:
                 raise ValueError("data must contain multiple values")
             self.lambtha = float(1 / (sum(data) / len(data)))
+
+    def factorial(self, n):
+        """Method that return the factorial result of n"""
+        fac = 1
+        for number in range(1, n + 1):
+            fac = fac * number
+        return fac
+
+    def pdf(self, x):
+        """Calculates the value of the PDF for a given time period"""
+        if x < 0:
+            return 0
+        return self.lambtha * self.e ** (-1 * self.lambtha * x)
+
+    def cdf(self, x):
+        """Calculates the value of the CDF for a given time period"""
+        if x < 0:
+            return 0
+        return 1 - self.e ** (-1 * self.lambtha * x)
