@@ -20,7 +20,7 @@ class Normal:
             if stddev <= 0:
                 raise ValueError('stddev must be a positive value')
         else:
-            if data is not list:
+            if type(data) is not list:
                 raise TypeError('data must be a list')
             elif len(data) < 2:
                 raise ValueError('data must contain multiple values')
