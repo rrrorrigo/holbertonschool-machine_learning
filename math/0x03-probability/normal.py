@@ -20,6 +20,10 @@ class Normal:
             if stddev <= 0:
                 raise ValueError('stddev must be a positive value')
         else:
+            if data is not list:
+                raise TypeError('data must be a list')
+            elif len(data) < 2:
+                raise ValueError('data must contain multiple values')
             self.mean = sum(data) / len(data)
             self.stddev = (sum((x - self.mean) ** 2 for x in data) / len(data)) ** 0.5
 
