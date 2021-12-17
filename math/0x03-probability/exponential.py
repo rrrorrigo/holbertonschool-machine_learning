@@ -6,7 +6,7 @@ class Exponential:
     """class Exponential that represents an exponential distribution"""
     def __init__(self, data=None, lambtha=1.):
         """Class contructor
-        
+
         data: is a list of the data to be used to estimate the distribution
         lambtha: is the expected number of occurences in a given time frame
         """
