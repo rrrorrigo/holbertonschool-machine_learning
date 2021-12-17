@@ -25,7 +25,8 @@ class Normal:
             elif len(data) < 2:
                 raise ValueError('data must contain multiple values')
             self.mean = sum(data) / len(data)
-            self.stddev = (sum((x - self.mean) ** 2 for x in data) / len(data)) ** 0.5
+            a = sum((x - self.mean) ** 2 for x in data)
+            self.stddev = (a / len(data)) ** 0.5
 
     def z_score(self, x):
         """Calculates the z-score of a given x-value"""
@@ -43,8 +44,8 @@ class Normal:
 
     def erf(self, x):
         """Error function of x"""
-        erf = 2 / (self.π**0.5) * (x - (x**3) / 3 + (x ** 5) / 10 -
-            (x ** 7) / 42 + (x ** 9) / 216)
+        a = 2 / (self.π**0.5)
+        erf = a * (x - (x**3) / 3 + (x**5) / 10 - (x**7) / 42 + (x**9) / 216)
         return erf
 
     def cdf(self, x):
