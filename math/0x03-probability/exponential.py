@@ -10,10 +10,10 @@ class Exponential:
         data: is a list of the data to be used to estimate the distribution
         lambtha: is the expected number of occurences in a given time frame
         """
+        self.lambtha = float(lambtha)
         if data is None:
             if lambtha < 0:
                 raise ValueError("lambtha must be a positive value")
-            self.lambtha = float(lambtha)
         else:
             if type(data) is not list:
                 raise TypeError("data must be a list")
