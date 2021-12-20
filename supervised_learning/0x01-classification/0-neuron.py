@@ -10,7 +10,7 @@ class Neuron:
     binary classification"""
     def __init__(self, nx):
         """Class constructor.
-        
+
         nx: is the number of input features to the neuron
             if nx is not an integer, raise a TypeError
             if nx is less than 1, raise a ValueError"""
