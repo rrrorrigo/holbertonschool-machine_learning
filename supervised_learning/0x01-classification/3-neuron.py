@@ -53,6 +53,6 @@ class Neuron:
             output of the neuron for each example"""
         m = Y.shape[1]
         a = 1.0000001 - A
-        y = 1.0000001 - Y
+        y = 1 - Y
         totalCost = -(1 / m) * np.sum(Y * np.log(A) + y * np.log(a))
         return totalCost
