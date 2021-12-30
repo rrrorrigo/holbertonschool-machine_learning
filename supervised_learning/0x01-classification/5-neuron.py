@@ -53,7 +53,7 @@ class Neuron:
             output of the neuron for each example"""
         m = Y.shape[1]
         a = 1.0000001 - A
-        y = 1.0000001 - Y
+        y = 1 - Y
         totalCost = -(1 / m) * np.sum(Y * np.log(A) + y * np.log(a))
         return totalCost
 
@@ -82,8 +82,8 @@ class Neuron:
         A: is a numpy.ndarray with shape (1, m) containing the activated
             output of the neuron for each example
         alpha: is the learning rate"""
-        z = A - Y
         m = X.shape[1] # number of trainig examples
+        z = A - Y
         w = np.matmul(X, z.T) / m
         b = np.sum(z) / m
         self.__W = self.__W - alpha * w
