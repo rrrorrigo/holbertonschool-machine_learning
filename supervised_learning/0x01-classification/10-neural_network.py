@@ -46,7 +46,7 @@ class NeuralNetwork:
     def W2(self):
         """getter funciton of attribute W2"""
         return self.__W2
-        
+
     @property
     def b1(self):
         """getter funciton of attribute b1"""
@@ -73,8 +73,7 @@ class NeuralNetwork:
         X: is a numpy.ndarray with shape (nx, m) that contains the input data
         """
         fp1 = np.matmul(self.__W1, X) + self.__b1
-        sigmoid = lambda x: 1 / (1 + (np.e**-x))
-        self.__A1 = sigmoid(fp1)
+        self.__A1 = 1 / (1 + (np.e**-fp1))
         fp2 = np.matmul(self.__W2, self.__A1) + self.__b2
-        self.__A2 = sigmoid(fp2)
+        self.__A2 = 1 / (1 + (np.e**-fp2))
         return self.__A1, self.__A2
