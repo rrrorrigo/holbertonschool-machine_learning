@@ -86,5 +86,5 @@ class Neuron:
         z = A - Y
         w = np.matmul(X, z.T) / m
         b = np.sum(z) / m
-        self.__W = self.__W - alpha * w
-        self.__b = self.__b - alpha * b
+        self.__W = self.__W - (alpha * w).T
+        self.__b = self.__b - (alpha * b).T
