@@ -18,9 +18,9 @@ class Neuron:
             raise TypeError('nx must be an integer')
         if nx < 1:
             raise ValueError('nx must be a positive integer')
-        self.__W = np.random.randn(1, nx) #weight of vector
-        self.__b = 0 # bias of each neuron
-        self.__A = 0 # Activated output of each neuron
+        self.__W = np.random.randn(1, nx)  # weight of vector
+        self.__b = 0  # bias of each neuron
+        self.__A = 0  # Activated output of each neuron
 
     @property
     def W(self):
@@ -82,7 +82,7 @@ class Neuron:
         A: is a numpy.ndarray with shape (1, m) containing the activated
             output of the neuron for each example
         alpha: is the learning rate"""
-        m = X.shape[1] # number of trainig examples
+        m = X.shape[1]  # number of trainig examples
         z = A - Y
         w = np.matmul(X, z.T) / m
         b = np.sum(z) / m
