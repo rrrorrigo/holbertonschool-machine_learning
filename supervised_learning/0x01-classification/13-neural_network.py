@@ -46,7 +46,7 @@ class NeuralNetwork:
     def W2(self):
         """getter funciton of attribute W2"""
         return self.__W2
-        
+
     @property
     def b1(self):
         """getter funciton of attribute b1"""
@@ -73,10 +73,9 @@ class NeuralNetwork:
         X: is a numpy.ndarray with shape (nx, m) that contains the input data
         """
         fp1 = np.matmul(self.__W1, X) + self.__b1
-        sigmoid = lambda x: 1 / (1 + (np.e**-x))
-        self.__A1 = sigmoid(fp1)
+        self.__A1 = 1 / (1 + (np.e**-fp1))
         fp2 = np.matmul(self.__W2, self.__A1) + self.__b2
-        self.__A2 = sigmoid(fp2)
+        self.__A2 = 1 / (1 + (np.e**-fp2))
         return self.__A1, self.__A2
 
     def cost(self, Y, A):
@@ -116,15 +115,15 @@ class NeuralNetwork:
         A2: is the predicted output
         alpha: is the learning rate"""
         m = X.shape[1]  # number of trainig examples
-        z1 = A1 - Y
+        # derivate all values
         z2 = A2 - Y
-        w1 = np.matmul(X, z1.T) / m
-        b1 = np.sum(z1) / m
-        w2 = np.matmul(X, z2.T) / m
-        b2 = np.sum(z2) / m
+        w2 = np.matmul(z2, A1.T) / m
+        b2 = np.sum(z2, axis=1, keepdims=True) / m
+        z1 = np.matmul(self.__W2.T, z2) * (A1 * (1 - A1))
+        w1 = np.matmul(z1, X.T) / m
+        b1 = np.sum(z1, axis=1, keepdims=True) / m
         # gradient descent formula for Weight and bias
-        updtAttributes = lambda x, y: x - (alpha * y).T
-        self.__W1 = updtAttributes(self.__W1, w1)
-        self.__b1 = updtAttributes(self.__b1, b1)
-        self.__W2 = updtAttributes(self.__W2, w2)
-        self.__b2 = updtAttributes(self.__b2, b2)
+        self.__W2 -= alpha * w2
+        self.__b2 -= alpha * b2
+        self.__W1 -= alpha * w1
+        self.__b1 -= alpha * b1
