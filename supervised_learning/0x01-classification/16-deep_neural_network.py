@@ -24,7 +24,7 @@ class DeepNeuralNetwork:
         self.cache = {}
         self.weights = {}
         for i in range(self.L):
-            if i == 0: # he et al method for the first layer
+            if i == 0:  # he et al method for the first layer
                 self.weights['W1'] = np.random.randn(
                     layers[0], nx) * np.sqrt(2 / nx)
             else:
