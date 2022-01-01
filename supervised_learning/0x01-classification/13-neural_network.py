@@ -115,14 +115,12 @@ class NeuralNetwork:
         A2: is the predicted output
         alpha: is the learning rate"""
         m = X.shape[1]  # number of trainig examples
-        # derivate all values
         z2 = A2 - Y
         w2 = np.matmul(z2, A1.T) / m
         b2 = np.sum(z2, axis=1, keepdims=True) / m
         z1 = np.matmul(self.__W2.T, z2) * (A1 * (1 - A1))
         w1 = np.matmul(z1, X.T) / m
         b1 = np.sum(z1, axis=1, keepdims=True) / m
-        # gradient descent formula for Weight and bias
         self.__W2 -= alpha * w2
         self.__b2 -= alpha * b2
         self.__W1 -= alpha * w1
