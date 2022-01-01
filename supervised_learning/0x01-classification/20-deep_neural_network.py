@@ -85,7 +85,7 @@ class DeepNeuralNetwork:
 
         Return: the neuron’s prediction and the cost of the network,
         respectively"""
-        A, c = self.forward_prop(X)
-        predict = np.where(A >= 0.5, 1, 0)
-        cost = self.cost(Y, A)
+        self.forward_prop(X)
+        predict = np.where(self.cache['A' + str(self.L)] >= 0.5, 1, 0)
+        cost = self.cost(Y, self.cache['A' + str(self.L)])
         return (predict, cost)
