@@ -24,8 +24,12 @@ class DeepNeuralNetwork:
         self.cache = {}
         self.weights = {}
         for i in range(self.L):
-            self.weights['W' + str(i + 1)] = np.random.randn(
-                layers[i], layers[i - 1]) * np.sqrt(
-                    2 / (layers[i - 1] + layers[i]))
+            if i == 0: # he et al method for the first layer
+                self.weights['W1'] = np.random.randn(
+                    layers[0], nx) * np.sqrt(2 / nx)
+            else:
+                self.weights['W' + str(i + 1)] = np.random.randn(
+                    layers[i], layers[i - 1]) * np.sqrt(
+                        2 / (layers[i - 1] + layers[i]))
             self.weights['b' + str(i + 1)] = np.zeros(
                 layers[i]).reshape(layers[i], 1)
