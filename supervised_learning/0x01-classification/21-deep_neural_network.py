@@ -85,10 +85,10 @@ class DeepNeuralNetwork:
 
         Return: the neuron’s prediction and the cost of the network,
         respectively"""
-        self.forward_prop(X)
-        predict = np.where(self.cache['A' + str(self.L)] >= 0.5, 1, 0)
-        cost = self.cost(Y, self.cache['A' + str(self.L)])
-        return (predict, cost)
+        A, _ = self.forward_prop(X)
+        prediction = np.where(A >= 0.5, 1, 0)
+        cost = self.cost(Y, A)
+        return prediction, cost
 
     def gradient_descent(self, Y, cache, alpha=0.05):
         """Calculates one pass of gradient descent on the neural network
