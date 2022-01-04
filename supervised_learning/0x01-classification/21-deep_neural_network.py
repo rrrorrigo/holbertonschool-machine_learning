@@ -99,17 +99,16 @@ class DeepNeuralNetwork:
             the network
         alpha: is the learning rate"""
         m = Y.shape[1]
-        w = self.weights.copy()
-        dz = self.cache['A' + str(self.L)] - Y
-        dw = np.matmul(self.cache['A' + str(self.L - 1)], dz.T) / m
-        db = np.sum(dz, axis=1, keepdims=True) / m
-        self.__weights['W' + str(self.L)] -= alpha * dw.T
-        self.__weights['b' + str(self.L)] -= alpha * db
-
         for i in range(self.L - 1, 0, -1):
-            x = self.__cache['A' + str(i)] * (1 - self.__cache['A' + str(i)])
-            dz = np.matmul(w['W' + str(i + 1)].T, dz) * x
-            dw = np.matmul(self.cache['A' + str(i - 1)], dz.T) / m
+            A = cache['A' + str(i + 1)]
+            a = cache['A' + str(i)]
+            x = A * (1 - A)
+            if i == self.L - 1:
+                dz = A - Y
+                W = self.__weights['W' + str(i + 1)]
+            else:
+                dz = np.matmul(W.T, dz) * x
+            dw = np.matmul(a, dz.T) / m
             db = np.sum(dz, axis=1, keepdims=True) / m
-            self.__weights['W' + str(i)] -= alpha * dw.T
-            self.__weights['b' + str(i)] -= alpha * db
+            self.__weights['W' + str(i + 1)] = self.__weights['W' + str(i + 1)] - alpha * dw.T
+            self.__weights['b' + str(i + 1)] = self.__weights['b' + str(i + 1)] - alpha * db
