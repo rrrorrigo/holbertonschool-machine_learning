@@ -11,8 +11,8 @@ forward_prop = __import__('2-forward_prop').forward_prop
 
 
 def train(X_train, Y_train, X_valid, Y_valid,
-    layer_sizes, activations, alpha, iterations,
-    save_path="/tmp/model.ckpt"):
+          layer_sizes, activations, alpha, iterations,
+          save_path="/tmp/model.ckpt"):
     """function that that builds, trains, and saves a neural network classifier
 
     X_train: is a numpy.ndarray containing the training input data
@@ -45,10 +45,10 @@ def train(X_train, Y_train, X_valid, Y_valid,
         for i in range(iterations + 1):
             costTrain = sess.run(loss, feed_dict={x: X_train, y: Y_train})
             accuracyTrain = sess.run(accuracy,
-                                      feed_dict={x: X_train, y: Y_train})
+                                     feed_dict={x: X_train, y: Y_train})
             costVal = sess.run(loss, feed_dict={x: X_valid, y: Y_valid})
             accuracyVal = sess.run(accuracy,
-                                    feed_dict={x: X_valid, y: Y_valid})
+                                   feed_dict={x: X_valid, y: Y_valid})
             if i % 100 == 0 or i == iterations:
                 print("After {} iterations:".format(i))
                 print("\tTraining Cost: {}".format(costTrain))
