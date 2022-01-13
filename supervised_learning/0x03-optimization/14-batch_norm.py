@@ -35,4 +35,3 @@ def create_batch_norm_layer(prev, n, activation):
     if not activation:
         return batch
     return activation(batch)
-
