@@ -2,7 +2,6 @@
 """7. RMSProp"""
 
 
-from glob import glob
 import tensorflow.compat.v1 as tf
 
 
