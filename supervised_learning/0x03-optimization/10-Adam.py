@@ -16,5 +16,5 @@ def create_Adam_op(loss, alpha, beta1, beta2, epsilon):
     epsilon: is a small number to avoid division by zero
 
     Returns: the Adam optimization operation"""
-    return tf.train.RMSPropOptimizer(
+    return tf.train.AdamOptimizer(
         alpha, beta1=beta1, beta2=beta2, epsilon=epsilon).minimize(loss)
