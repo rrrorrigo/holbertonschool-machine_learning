@@ -14,7 +14,8 @@ def create_batch_norm_layer(prev, n, activation):
     activation: is the activation function that should be used on the output
         of the layer
     you should use the tf.keras.layers.Dense layer as the base layer with
-        kernal initializer tf.keras.initializers.VarianceScaling(mode='fan_avg')
+        kernal initializer
+        tf.keras.initializers.VarianceScaling(mode='fan_avg')
     your layer should incorporate two trainable parameters, gamma and beta,
         initialized as vectors of 1 and 0 respectively
     you should use an epsilon of 1e-8
