@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
+"""2-l2 regularization cost"""
 
-import numpy as np
+
 import tensorflow.compat.v1 as tf
 
 
