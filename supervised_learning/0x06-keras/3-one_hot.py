@@ -2,7 +2,7 @@
 """3-one_hot"""
 
 
-import numpy as np
+import tensorflow.keras as K
 
 
 def one_hot(labels, classes=None):
@@ -11,8 +11,4 @@ def one_hot(labels, classes=None):
     The last dimension of the one-hot matrix must be the number of classes
 
     Returns: the one-hot matrix"""
-    l = len(labels)
-    b = np.zeros((l, l))
-    for i in range(l):
-        b[i][labels[i]] = 1
-    return b
+    return K.utils.to_categorical(labels, num_classes=classes)
