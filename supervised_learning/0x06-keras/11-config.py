@@ -10,7 +10,7 @@ def save_config(network, filename):
 
     network: neural network
     filename: path to file to save the model"""
-    config = network.get_json()
+    config = network.to_json()
     with open(filename, 'w') as f:
         f.write(config)
     return None
