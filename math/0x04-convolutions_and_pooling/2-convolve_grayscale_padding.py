@@ -24,7 +24,6 @@ def convolve_grayscale_padding(images, kernel, padding):
 
     Returns: a numpy.ndarray containing the convolved images"""
     m = images.shape[0]
-    imagesNum = np.arange(m)
     ih = images.shape[1]
     iw = images.shape[2]
     kh = kernel.shape[0]
@@ -32,8 +31,8 @@ def convolve_grayscale_padding(images, kernel, padding):
     output = np.zeros((m, (ih - kh + 1), (iw - kw + 1)))
     for y in range(ih - kh + 1):
         for x in range(iw - kw + 1):
-            output[imagesNum, x, y] = np.sum(
-                kernel * images[imagesNum, x: x + kw, y: y + kh], axis=(1, 2)
+            output[:, x, y] = np.sum(
+                kernel * images[:, x: x + kw, y: y + kh], axis=(1, 2)
             )
     ph = padding[0]
     pw = padding[1]
