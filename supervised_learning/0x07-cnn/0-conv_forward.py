@@ -44,8 +44,8 @@ def conv_forward(A_prev, W, b, activation, padding="same", stride=(1, 1)):
     kp = W.shape[2]
     ko = W.shape[3]
     if padding == 'same':
-        ph = int(np.ceil((ih - 1) * stride[0] + kh - ih // 2 + 1))
-        pw = int(np.ceil((iw - 1) * stride[1] + kw - iw // 2 + 1))
+        ph = int(np.ceil((ih * stride[0] - stride[1] + kh - ih) / 2))
+        pw = int(np.ceil((iw * stride[1] - stride[1] + kw - iw) / 2))
         A_prev = np.pad(A_prev, ((0, 0), (ph, ph), (pw, pw), (0, 0)))
     if padding == 'valid':
         ph, pw = (0, 0)
@@ -55,11 +55,11 @@ def conv_forward(A_prev, W, b, activation, padding="same", stride=(1, 1)):
     for n in range(ko):
         for y in range(ch):
             for x in range(cw):
-                x0 = x * stride[0]
-                y0 = y * stride[1]
-                X = x0 + kh
-                Y = y0 + kw
+                x0 = x * stride[1]
+                y0 = y * stride[0]
+                X = x0 + kw
+                Y = y0 + kh
                 output[imagesNum, y, x, n] = activation(np.sum(
                     W[:, :, :, n] * A_prev[imagesNum, y0: Y, x0: X],
-                axis=(1, 2, 3)) + b[:, :, :, n])
+                axis=(1, 2, 3)) + b[0, 0, 0, n])
     return output
