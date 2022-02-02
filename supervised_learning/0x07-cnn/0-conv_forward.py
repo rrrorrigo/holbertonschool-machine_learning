@@ -55,14 +55,14 @@ def conv_forward(A_prev, W, b, activation, padding="same", stride=(1, 1)):
     ch = (ih + 2 * ph - kh) // stride[0] + 1
     cw = (iw + 2 * pw - kw) // stride[1] + 1
     output = np.zeros((m, ch, cw, ko))
-    for y in range(ch):
-        for x in range(cw):
-            for n in range(ko):
+    for n in range(ko):
+        for y in range(ch):
+            for x in range(cw):
                 x0 = x * stride[0]
                 y0 = y * stride[1]
                 X = x0 + kh
                 Y = y0 + kw
-                output[imagesNum, x, y, n] = activation(np.sum(
-                    W[:, :, :, n] * A_prev[imagesNum, x0: X, y0: Y],
+                output[imagesNum, y, x, n] = activation(np.sum(
+                    W[:, :, :, n] * A_prev[imagesNum, y0: Y, x0: X],
                 axis=(1, 2, 3)) + b[:, :, :, n])
     return output
