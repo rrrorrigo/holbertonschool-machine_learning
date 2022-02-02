@@ -23,9 +23,9 @@ def conv_forward(A_prev, W, b, activation, padding="same", stride=(1, 1)):
     b: is a numpy.ndarray of shape (1, 1, 1, c_new) containing the biases
     applied to the convolution
     activation: is an activation function applied to the convolution
-    padding is either a tuple of (ph, pw), ‘same’, or ‘valid’
-        if ‘same’, performs a same convolution
-        if ‘valid’, performs a valid convolution
+    padding is either a tuple of (ph, pw), same, or valid
+        if same, performs a same convolution
+        if valid, performs a valid convolution
         if a tuple:
             ph is the padding for the height of the image
             pw is the padding for the width of the image
