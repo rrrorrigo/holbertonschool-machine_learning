@@ -28,11 +28,11 @@ def lenet5(X):
     hyperparameters) and accuracy metrics"""
     init = K.initializers.VarianceScaling(scale=2.0)
     layer1 = K.layers.Conv2D(6, (5, 5), kernel_initializer=init, activation='relu', padding='same')(X)
-    layer2 = K.layers.AveragePooling2D(2, 2)(layer1)
+    layer2 = K.layers.MaxPooling2D(2, 2)(layer1)
     layer3 = K.layers.Conv2D(
         16, (5, 5), kernel_initializer=init, activation='relu', padding='valid'
     )(layer2)
-    layer4 = K.layers.AveragePooling2D(2, 2)(layer3)
+    layer4 = K.layers.MaxPooling2D(2, 2)(layer3)
     layer5 = K.layers.Flatten()(layer4)
     layer6 = K.layers.Dense(units=120, kernel_initializer=init, activation='relu')(layer5)
     layer7 = K.layers.Dense(units=84, kernel_initializer=init, activation='relu')(layer6)
