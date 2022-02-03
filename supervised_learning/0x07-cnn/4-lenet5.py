@@ -37,19 +37,24 @@ def lenet5(x, y):
         a tensor for the loss of the netowrk
         a tensor for the accuracy of the network"""
     init = tf.keras.initializers.VarianceScaling(scale=2.0)
-    layer1 = tf.layers.Conv2D(6, (5, 5), kernel_initializer=init, padding='same', activation=tf.nn.relu)(x)
+    layer1 = tf.layers.Conv2D(6, (5, 5), kernel_initializer=init,
+                              padding='same', activation=tf.nn.relu)(x)
     layer2 = tf.layers.MaxPooling2D(pool_size=2, strides=2)(layer1)
-    layer3 = tf.layers.Conv2D(16, (5, 5), kernel_initializer=init, padding='valid', activation=tf.nn.relu)(layer2)
+    layer3 = tf.layers.Conv2D(16, (5, 5), kernel_initializer=init,
+                              padding='valid', activation=tf.nn.relu)(layer2)
     layer4 = tf.layers.MaxPooling2D(pool_size=2, strides=2)(layer3)
     layer5 = tf.layers.Flatten()(layer4)
-    layer6 = tf.layers.Dense(120, kernel_initializer=init, activation=tf.nn.relu)(layer5)
-    layer7 = tf.layers.Dense(84, kernel_initializer=init, activation=tf.nn.relu)(layer6)
+    layer6 = tf.layers.Dense(
+        120, kernel_initializer=init, activation=tf.nn.relu)(layer5)
+    layer7 = tf.layers.Dense(
+        84, kernel_initializer=init, activation=tf.nn.relu)(layer6)
     layer8 = tf.layers.Dense(10, kernel_initializer=init)(layer7)
 
     activation = tf.nn.softmax(layer8)
-    print(y.shape, layer7.shape)
     losses = tf.losses.softmax_cross_entropy(y, layer8)
-    accurrancy = tf.reduce_mean(tf.cast(tf.math.equal(tf.argmax(layer8, 1), tf.argmax(y, 1)), "float"))
+    accurrancy = tf.reduce_mean(tf.cast(tf.math.equal(tf.argmax(layer8, 1),
+                                                      tf.argmax(y, 1)),
+                                                      "float"))
     adam = tf.train.AdamOptimizer().minimize(losses)
 
     return activation, adam, losses, accurrancy
