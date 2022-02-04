@@ -59,10 +59,10 @@ def conv_backward(dZ, A_prev, W, b, padding="same", stride=(1, 1)):
         for n in range(chnn):
             for y in range(ih):
                 for x in range(iw):
-                    x0 = x * stride[0]
-                    y0 = y * stride[1]
-                    X = x0 + kh
-                    Y = y0 + kw
+                    x0 = x * stride[1]
+                    y0 = y * stride[0]
+                    X = x0 + kw
+                    Y = y0 + kh
                     output[imagesNumber, y0: Y, x0: X, :] += dZ[imagesNumber, y, x, n] * W[:, :, :, n]
                     dW[:, :, :, n] += A_prev[imagesNumber, y0: Y, x0: X, :] * dZ[imagesNumber, y, x, n]
     if padding == 'same':
