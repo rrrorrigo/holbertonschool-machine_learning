@@ -5,7 +5,7 @@
 import numpy as np
 
 
-def convolve_grayscale_valid(images, kernel):
+def convolve_grayscale_same(images, kernel):
     """Function that performs a valid convolution on grayscale images
 
     images: is a numpy.ndarray with shape (m, h, w) containing multiple
@@ -25,10 +25,10 @@ def convolve_grayscale_valid(images, kernel):
     kh = kernel.shape[0]
     kw = kernel.shape[1]
     output = np.zeros((m, (ih - kh + 1), (iw - kw + 1)))
-    for y in range(ih - kh + 1):
-        for x in range(iw - kw + 1):
+    for x in range(ih - kh + 1):
+        for y in range(iw - kw + 1):
             output[imagesNum, x, y] = np.sum(
-                kernel * images[imagesNum, x: x + kw, y: y + kh], axis=(1, 2)
+                kernel * images[imagesNum, x: x + kh, y: y + kw], axis=(1, 2)
             )
     oh = output.shape[1]
     ow = output.shape[2]
