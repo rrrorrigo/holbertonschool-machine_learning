@@ -22,7 +22,8 @@ def inception_network():
                         kernel_initializer=init, activation='relu')(i)
     x = K.layers.MaxPool2D(3, strides=2, padding='same')(x)
 
-    x = K.layers.Conv2D(192, 3, padding='same', kernel_initializer=init, activation='relu')(x)
+    x = K.layers.Conv2D(192, 3, padding='same', kernel_initializer=init,
+                        activation='relu')(x)
     x = K.layers.MaxPool2D(3, strides=2, padding='same')(x)
 
     x = inception_block(x, [64, 96, 128, 16, 32, 32])
