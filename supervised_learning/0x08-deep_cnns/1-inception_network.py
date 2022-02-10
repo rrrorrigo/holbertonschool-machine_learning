@@ -17,7 +17,7 @@ def inception_network():
     """
     input = K.layers.Input(shape=(224, 224, 3))  # 0
 
-    layer1 = K.layers.Conv2D(64, 7, strides=2, padding='same', activation='relu')(i)
+    layer1 = K.layers.Conv2D(64, 7, strides=2, padding='same', activation='relu')(input)
     layer1 = K.layers.MaxPool2D(3, strides=2, padding='same')(layer1)
 
     layer2 = K.layers.Conv2D(64, 1, activation='relu')(layer1)
