@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""DenseNet-121 - Densely Connected Convolutional Networks"""
+"""DenseNet-121"""
 
 
 import tensorflow.keras as K
