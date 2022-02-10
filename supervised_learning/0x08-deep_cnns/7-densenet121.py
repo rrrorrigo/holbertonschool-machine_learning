@@ -33,27 +33,27 @@ def densenet121(growth_rate=32, compression=1.0):
                                         padding='same')(convolution)
     denseBlock1 = dense_block(maxPooling, 64, growth_rate, 6)
     transitionBlack1 = transition_layer(denseBlock1[0],
-                                          denseBlock1[1],
-                                          compression)
+                                        denseBlock1[1],
+                                        compression)
     denseBlock2 = dense_block(transitionBlack1[0],
-                                transitionBlack1[1],
-                                growth_rate, 12)
+                              transitionBlack1[1],
+                              growth_rate, 12)
     transitionBlack2 = transition_layer(denseBlock2[0],
-                                          denseBlock2[1],
-                                          compression)
+                                        denseBlock2[1],
+                                        compression)
     denseBlock3 = dense_block(transitionBlack2[0],
-                                transitionBlack2[1],
-                                growth_rate, 24)
+                              transitionBlack2[1],
+                              growth_rate, 24)
     transitionBlack3 = transition_layer(denseBlock3[0],
-                                          denseBlock3[1],
-                                          compression)
+                                        denseBlock3[1],
+                                        compression)
     denseBlock4 = dense_block(transitionBlack3[0],
-                                transitionBlack3[1],
-                                growth_rate, 16)
+                              transitionBlack3[1],
+                              growth_rate, 16)
     avgPooling = K.layers.AveragePooling2D(pool_size=(7, 7),
-                                            strides=1)(denseBlock4[0])
+                                           strides=1)(denseBlock4[0])
     outputLayer = K.layers.Dense(1000,
-                                  activation='softmax')(avgPooling)
+                                 activation='softmax')(avgPooling)
     model = K.Model(inputLayer, outputLayer)
 
     return model
