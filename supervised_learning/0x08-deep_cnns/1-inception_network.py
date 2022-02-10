@@ -15,13 +15,14 @@ def inception_network():
        rectified linear activation (ReLU)
     Returns:    the keras model
     """
+    init = K.initializers.HeNormal()
     i = K.layers.Input(shape=(224, 224, 3))
 
-    x = K.layers.Conv2D(64, 7, strides=2, padding='same', activation='relu')(i)
+    x = K.layers.Conv2D(64, 7, strides=2, padding='same',
+                        kernel_initializer=init, activation='relu')(i)
     x = K.layers.MaxPool2D(3, strides=2, padding='same')(x)
 
-    x = K.layers.Conv2D(64, 1, activation='relu')(x)
-    x = K.layers.Conv2D(192, 3, padding='same', activation='relu')(x)
+    x = K.layers.Conv2D(192, 3, padding='same', kernel_initializer=init, activation='relu')(x)
     x = K.layers.MaxPool2D(3, strides=2, padding='same')(x)
 
     x = inception_block(x, [64, 96, 128, 16, 32, 32])
