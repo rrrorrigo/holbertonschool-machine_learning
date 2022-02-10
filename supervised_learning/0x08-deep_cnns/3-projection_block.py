@@ -36,7 +36,7 @@ def projection_block(A_prev, filters, s=2):
     conv = K.layers.Conv2D(F3, 3,
                               padding='same',
                               kernel_initializer=init)(activation)
-    batchNorm = K.layers.BatchNormalization()(conv)
+    batchNormSecond = K.layers.BatchNormalization()(conv)
     activation = K.layers.Activation('relu')(batchNorm)
     conv = K.layers.Conv2D(F12, 1,
                               padding='same',
@@ -47,8 +47,8 @@ def projection_block(A_prev, filters, s=2):
                               padding='same',
                               strides=s,
                               kernel_initializer=init)(inputLayer)
-    batchNorm = K.layers.BatchNormalization()(conv)
-    add = K.layers.Add()([batchNorm, batchNorm])
+    batchNormLast = K.layers.BatchNormalization()(conv)
+    add = K.layers.Add()([batchNormSecond, batchNormLast])
     activation = K.layers.Activation('relu')(add)
 
     return activation
