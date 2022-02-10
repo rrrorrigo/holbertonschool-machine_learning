@@ -15,33 +15,33 @@ def inception_network():
        rectified linear activation (ReLU)
     Returns:    the keras model
     """
-    input = K.layers.Input(shape=(224, 224, 3))  # 0
+    i = K.layers.Input(shape=(224, 224, 3))
 
-    layer1 = K.layers.Conv2D(64, 7, strides=2, padding='same', activation='relu')(input)
-    layer1 = K.layers.MaxPool2D(3, strides=2, padding='same')(layer1)
+    x = K.layers.Conv2D(64, 7, strides=2, padding='same', activation='relu')(i)
+    x = K.layers.MaxPool2D(3, strides=2, padding='same')(x)
 
-    layer2 = K.layers.Conv2D(64, 1, activation='relu')(layer1)
-    layer2 = K.layers.Conv2D(192, 3, padding='same', activation='relu')(layer2)
-    layer2 = K.layers.MaxPool2D(3, strides=2, padding='same')(layer2)
+    x = K.layers.Conv2D(64, 1, activation='relu')(x)
+    x = K.layers.Conv2D(192, 3, padding='same', activation='relu')(x)
+    x = K.layers.MaxPool2D(3, strides=2, padding='same')(x)
 
-    layer3 = inception_block(layer2, [64, 96, 128, 16, 32, 32])
-    layer3 = inception_block(layer3, [128, 128, 192, 32, 96, 64])
-    layer3 = K.layers.MaxPool2D(3, strides=2, padding='same')(layer3)
+    x = inception_block(x, [64, 96, 128, 16, 32, 32])
+    x = inception_block(x, [128, 128, 192, 32, 96, 64])
+    x = K.layers.MaxPool2D(3, strides=2, padding='same')(x)
 
-    layer4 = inception_block(layer3, [192, 96, 208, 16, 48, 64])
-    layer4 = inception_block(layer4, [160, 112, 224, 24, 64, 64])
-    layer4 = inception_block(layer4, [128, 128, 256, 24, 64, 64])
-    layer4 = inception_block(layer4, [112, 144, 288, 32, 64, 64])
-    layer4 = inception_block(layer4, [256, 160, 320, 32, 128, 128])
-    layer4 = K.layers.MaxPool2D(3, strides=2, padding='same')(layer4)
+    x = inception_block(x, [192, 96, 208, 16, 48, 64])
+    x = inception_block(x, [160, 112, 224, 24, 64, 64])
+    x = inception_block(x, [128, 128, 256, 24, 64, 64])
+    x = inception_block(x, [112, 144, 288, 32, 64, 64])
+    x = inception_block(x, [256, 160, 320, 32, 128, 128])
+    x = K.layers.MaxPool2D(3, strides=2, padding='same')(x)
 
-    layer5 = inception_block(layer4, [256, 160, 320, 32, 128, 128])
-    layer5 = inception_block(layer5, [384, 192, 384, 48, 128, 128])
+    x = inception_block(x, [256, 160, 320, 32, 128, 128])
+    x = inception_block(x, [384, 192, 384, 48, 128, 128])
 
-    layer6 = K.layers.AvgPool2D(7, strides=1)(layer5)
-    layer6 = K.layers.Dropout(0.4)(layer6)
+    x = K.layers.AvgPool2D(7, strides=1)(x)
+    x = K.layers.Dropout(0.4)(x)
 
-    output = K.layers.Dense(1000, activation='softmax')(layer6)
-    model = K.models.Model(input, output)
+    output = K.layers.Dense(1000, activation='softmax')(x)
+    model = K.models.Model(i, output)
 
     return model
