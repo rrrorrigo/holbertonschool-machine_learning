@@ -1,13 +1,15 @@
 #!/usr/bin/env python3
-"""matrix_transpose function"""
+"""Flip me over"""
 
 
 def matrix_transpose(matrix):
-    """returns the transpose of a 2D matrix"""
-    newMatrix = []
-    # append empty list to iterate on it afterwards
-    [newMatrix.append([]) for i in range(len(matrix[0]))]
-    for iArray in range(len(matrix[0])):
-        for iMatrix in range(len(matrix)):
-            newMatrix[iArray].append(matrix[iMatrix][iArray])
-    return newMatrix
+    """Function that returns the transpose of a 2D matrix"""
+    lenMatrix = len(matrix) # 2
+    lenArray = len(matrix[0]) # 2
+    rmatrix = []
+    for i in range(lenArray):
+        array = []
+        for n in range(lenMatrix):
+            array.append(matrix[n][i])
+        rmatrix.append(array)
+    return rmatrix
