@@ -4,8 +4,8 @@
 
 def matrix_transpose(matrix):
     """Function that returns the transpose of a 2D matrix"""
-    lenMatrix = len(matrix) # 2
-    lenArray = len(matrix[0]) # 2
+    lenMatrix = len(matrix)
+    lenArray = len(matrix[0])
     rmatrix = []
     for i in range(lenArray):
         array = []
