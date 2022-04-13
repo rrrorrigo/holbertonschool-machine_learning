@@ -3,7 +3,7 @@
 
 
 def matrix_shape(matrix):
-    """Function that calculates the shape of a matrix:"""
+    """Function that calculates the shape of a matrix"""
     shape = []
     while type(matrix) == list:
         for arr in matrix:
