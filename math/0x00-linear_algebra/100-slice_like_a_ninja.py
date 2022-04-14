@@ -2,11 +2,9 @@
 """Saddle Up"""
 
 
-import numpy as np
-
-
 def np_slice(matrix=[], axes={}):
     """function that slices a matrix along specific axes"""
+    import numpy as np
     slc = np.asarray(matrix)
     newMatrix = []
     for idx in range(len(slc)):
