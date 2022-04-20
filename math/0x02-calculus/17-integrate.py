@@ -14,7 +14,9 @@ def poly_integral(poly, C=0):
     Return: a new list of coefficients representing the integral of
     the polynomial"""
     # i == power of x
-    result = [0]
+    result = [C]
+    if type(poly) is not list or len(poly) == 0:
+        return None
     for i in range(1, len(poly) + 1):
         x = poly[i - 1] / i
         if (x - int(x)) == 0:
