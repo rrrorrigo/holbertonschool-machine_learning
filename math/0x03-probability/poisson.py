@@ -22,7 +22,7 @@ class Poisson:
                 raise TypeError('data must be a list')
             if len(data) < 2:
                 raise ValueError('data must contain multiple values')
-            self.lambtha = sum(data) / len(data)
+            self.lambtha = float(sum(data) / len(data))
 
     def pmf(self, k):
         """Function that calculates the value of the PMF for a given number of
@@ -33,9 +33,24 @@ class Poisson:
         Returns: the PMF value for k"""
         if type(k) is not int:
             k = int(k)
-        if k < 0 :
+        if k <= 0:
             return 0
         f_k = 1
-        for i in range(k, 0, -1):
+        for i in range(1, k + 1):
             f_k *= i
-        return (self.e ** (-self.lambtha) * self.lambtha**k) / f_k
+        return (self.e ** -self.lambtha) * (self.lambtha ** k) / f_k
+
+    def cdf(self, k):
+        """Function that calculates the value of the CDF for a given number of
+        successes
+
+        k: number of successes
+
+        Return: CDF value for k"""
+        if k <= 0:
+            return 0
+        k = int(k)
+        fx = 0
+        for i in range(k + 1):
+            fx += self.pmf(i)
+        return fx
