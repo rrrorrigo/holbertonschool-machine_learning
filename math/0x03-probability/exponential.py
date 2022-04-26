@@ -30,6 +30,6 @@ class Exponential:
         x: is the time period
 
         Return: PDF value of x"""
-        if x <= 0:
+        if x < 0:
             return 0
         return self.lambtha*(self.e**(-self.lambtha*x))
