@@ -33,7 +33,7 @@ class Poisson:
         Returns: the PMF value for k"""
         if type(k) is not int:
             k = int(k)
-        if k <= 0:
+        if k < 0:
             return 0
         f_k = 1
         for i in range(1, k + 1):
@@ -47,7 +47,7 @@ class Poisson:
         k: number of successes
 
         Return: CDF value for k"""
-        if k <= 0:
+        if k < 0:
             return 0
         k = int(k)
         fx = 0
