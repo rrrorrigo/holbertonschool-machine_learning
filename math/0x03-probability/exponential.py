@@ -16,11 +16,20 @@ class Exponential:
             self.lambtha = float(lambtha)
             if lambtha <= 0:
                 raise ValueError('lambtha must be a positive value')
-        if data:
+        else:
             if type(data) is not list:
                 raise TypeError('data must be a list')
             if len(data) < 2:
                 raise ValueError('data must contain multiple values')
             self.lambtha = 1 / (sum(data) / len(data))
 
-    
+    def pdf(self, x):
+        """Function that calculates the value of the PDF for a given time
+        period
+
+        x: is the time period
+
+        Return: PDF value of x"""
+        if x <= 0:
+            return 0
+        return self.lambtha*(self.e**(-self.lambtha*x))
