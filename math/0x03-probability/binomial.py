@@ -47,6 +47,9 @@ class Binomial:
         k: is the number of successes
 
         Return: the PMF value for k"""
+        k = int(k)
+        if k < 0 or k > self.n:
+            return 0
         firstPart = self.factorial(self.n) / (
             self.factorial(k) * self.factorial(self.n - k))
         secondPart = (self.p**k) * ((1 - self.p)**(self.n - k))
