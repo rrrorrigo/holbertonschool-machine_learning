@@ -87,7 +87,7 @@ class Neuron:
         alpha: is the learning rate"""
         m = 1 / X.shape[1]
         dz = A - Y
-        dw = np.matmul(dz, X.T)
+        dw = np.matmul(dz, X.T) * m
         db = np.sum(dz) * m
         self.__W = self.W - (alpha * dw)
         self.__b = self.b - (alpha * db).T
