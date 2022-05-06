@@ -2,7 +2,6 @@
 """Neuron"""
 
 
-from re import I
 import numpy as np
 
 
