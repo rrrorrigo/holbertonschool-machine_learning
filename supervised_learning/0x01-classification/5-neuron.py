@@ -2,7 +2,6 @@
 """Neuron"""
 
 
-from cmath import cos
 import numpy as np
 
 
