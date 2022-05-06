@@ -1,36 +1,6 @@
 
--   [](https://students-support.hbtn.io/hc)
-    
-      
-    
-
-----------
-
-----------
-
-[](https://intranet.hbtn.io/captain_logs/107797/edit)
-
-You have a captain's log due before 2022-05-08 (in 2 days)! Log it now!
-
 # 0x01. Classification
 
--   By Alexa Orrico, Software Engineer at Holberton School
--   Weight: 3
--   Ongoing project - started
-    
-    May 2, 2022
-    
-    , must end by
-    
-    May 11, 2022
-    
-    - you're done with  10% of tasks.
--   Checker was released at
-    
-    May 6, 2022 12:00 PM
-    
--   **Manual QA review must be done**  (request it when you are done with the project)
--   An auto review will be launched at the deadline
 
 ![](https://holbertonintranet.s3.amazonaws.com/uploads/medias/2018/10/83672a47323d70a88c5e.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIARDDGGGOU5BHMTQX4%2F20220506%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20220506T163930Z&X-Amz-Expires=86400&X-Amz-SignedHeaders=host&X-Amz-Signature=72f17a40b7b9f7c6fef3e04ac0b621ccbd694dc39c346550bc56f352fada11df)
 
