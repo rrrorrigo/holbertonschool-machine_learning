@@ -26,7 +26,7 @@ class NeuralNetwork:
         self.__W2 = np.random.normal(size=(1, nodes))
         self.__b1, self.__b2 = np.zeros(shape=(nodes, 1)), 0
         self.__A1, self.__A2 = 0, 0
-    
+
     @property
     def W1(self):
         """getter function of attribute W"""
