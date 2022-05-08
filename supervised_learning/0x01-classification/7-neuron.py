@@ -124,8 +124,8 @@ class Neuron:
             self.gradient_descent(X, Y, self.A, alpha)
             if verbose and (_ % step == 0 or _ == iterations):
                 costList.append(self.cost(Y, self.A))
-                print('Cost after {} iterations: {}'.format(_, self.cost(Y, self.A)))
-            
+                print('Cost after {} iterations: {}'
+                      .format(_, self.cost(Y, self.A)))
 
         if graph:
             import matplotlib.pyplot as plt
