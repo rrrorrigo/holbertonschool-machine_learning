@@ -37,7 +37,7 @@ class DeepNeuralNetwork:
             self.__weights[b] = np.zeros(shape=(layers[n], 1))
 
     @property
-    def n(self):
+    def L(self):
         """Getter function of private attribute n"""
         return self.__L
 
