@@ -23,22 +23,22 @@ class DeepNeuralNetwork:
         self.__L = len(layers)
         self.__cache = {}
         self.__weights = {}
-        for l in range(len(layers)):
-            if layers[l] < 1 or type(layers[l]) is not int:
+        for n in range(len(layers)):
+            if layers[n] < 1 or type(layers[n]) is not int:
                 raise TypeError('layers must be a list of positive integers')
-            w = 'W' + str(l + 1)
-            b = 'b' + str(l + 1)
-            if l == 0:
+            w = 'W' + str(n + 1)
+            b = 'b' + str(n + 1)
+            if n == 0:
                 layerPrev = nx
             else:
-                layerPrev = layers[l]
+                layerPrev = layers[n]
             sqrt = np.sqrt(2 / layerPrev)
-            self.__weights[w] = np.random.randn(layers[l], layerPrev) * sqrt
-            self.__weights[b] = np.zeros(shape=(layers[l], 1))
+            self.__weights[w] = np.random.randn(layers[n], layerPrev) * sqrt
+            self.__weights[b] = np.zeros(shape=(layers[n], 1))
 
     @property
-    def L(self):
-        """Getter function of private attribute L"""
+    def n(self):
+        """Getter function of private attribute n"""
         return self.__L
 
     @property

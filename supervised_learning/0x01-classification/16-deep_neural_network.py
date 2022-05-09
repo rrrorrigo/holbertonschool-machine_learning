@@ -23,15 +23,15 @@ class DeepNeuralNetwork:
         self.L = len(layers)
         self.cache = {}
         self.weights = {}
-        for l in range(len(layers)):
-            if layers[l] < 1 or type(layers[l]) is not int:
+        for n in range(len(layers)):
+            if layers[n] < 1 or type(layers[n]) is not int:
                 raise TypeError('layers must be a list of positive integers')
-            w = 'W' + str(l + 1)
-            b = 'b' + str(l + 1)
-            if l == 0:
+            w = 'W' + str(n + 1)
+            b = 'b' + str(n + 1)
+            if n == 0:
                 layerPrev = nx
             else:
-                layerPrev = layers[l]
+                layerPrev = layers[n]
             sqrt = np.sqrt(2 / layerPrev)
-            self.weights[w] = np.random.randn(layers[l], layerPrev) * sqrt
-            self.weights[b] = np.zeros(shape=(layers[l], 1))
+            self.weights[w] = np.random.randn(layers[n], layerPrev) * sqrt
+            self.weights[b] = np.zeros(shape=(layers[n], 1))
