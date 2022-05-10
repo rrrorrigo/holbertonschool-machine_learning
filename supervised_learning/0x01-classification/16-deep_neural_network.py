@@ -31,7 +31,7 @@ class DeepNeuralNetwork:
             if n == 0:
                 layerPrev = nx
             else:
-                layerPrev = layers[n]
+                layerPrev = layers[n - 1]
             sqrt = np.sqrt(2 / layerPrev)
             self.weights[w] = np.random.randn(layers[n], layerPrev) * sqrt
             self.weights[b] = np.zeros(shape=(layers[n], 1))
