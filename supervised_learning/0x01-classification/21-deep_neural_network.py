@@ -2,7 +2,6 @@
 """DeepNeuralNetwork"""
 
 
-from tkinter import W
 import numpy as np
 
 
