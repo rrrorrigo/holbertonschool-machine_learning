@@ -14,4 +14,5 @@ def create_layer(prev, n, activation):
 
     Return: the tensor output of the layer"""
     heetal = tf.keras.initializers.VarianceScaling(mode='fan_avg')
-    return tf.keras.layers.Dense(n, activation, kernel_initializer=heetal)(prev)
+    layer = tf.keras.layers.Dense(n, activation, kernel_initializer=heetal)
+    return layer(prev)
