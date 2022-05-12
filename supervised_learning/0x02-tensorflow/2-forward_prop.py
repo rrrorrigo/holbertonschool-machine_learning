@@ -21,5 +21,5 @@ def forward_prop(x, layer_sizes=[], activations=[]):
         if i == 0:
             prev = create_layer(x, layer_sizes[i], activations[i])
         else:
-            network = create_layer(prev, layer_sizes[i], activations[i])
-    return network
+            prev = create_layer(prev, layer_sizes[i], activations[i])
+    return prev
