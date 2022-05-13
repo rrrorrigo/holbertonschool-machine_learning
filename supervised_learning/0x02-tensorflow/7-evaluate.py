@@ -2,7 +2,7 @@
 """Module that builds, trains and saves a neural network classifier"""
 
 
-import tensorflow as tf
+import tensorflow.compat.v1 as tf
 
 
 def evaluate(X, Y, save_path):
