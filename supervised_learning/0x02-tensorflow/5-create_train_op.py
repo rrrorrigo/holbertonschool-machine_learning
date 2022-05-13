@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+"""create training operation"""
 
 
 import tensorflow.compat.v1 as tf
