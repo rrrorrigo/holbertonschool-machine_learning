@@ -3,6 +3,11 @@
 
 
 import tensorflow.compat.v1 as tf
+calculate_accuracy = __import__('3-calculate_accuracy').calculate_accuracy
+calculate_loss = __import__('4-calculate_loss').calculate_loss
+createPH = __import__('0-create_placeholders').create_placeholders
+create_train_op = __import__('5-create_train_op').create_train_op
+forward_prop = __import__('2-forward_prop').forward_prop
 
 
 def train(X_train, Y_train, X_valid, Y_valid, layer_sizes, activations, alpha,
@@ -22,11 +27,6 @@ def train(X_train, Y_train, X_valid, Y_valid, layer_sizes, activations, alpha,
     save_path: designates where to save the model
 
     Return: the path where the model was saved"""
-    calculate_accuracy = __import__('3-calculate_accuracy').calculate_accuracy
-    calculate_loss = __import__('4-calculate_loss').calculate_loss
-    createPH = __import__('0-create_placeholders').create_placeholders
-    create_train_op = __import__('5-create_train_op').create_train_op
-    forward_prop = __import__('2-forward_prop').forward_prop
 
     x, y = createPH(X_train.shape[1], Y_train.shape[1])
     tf.add_to_collection("x", x)
