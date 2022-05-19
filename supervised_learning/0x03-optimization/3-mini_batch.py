@@ -2,9 +2,6 @@
 """Shuffle data"""
 
 
-from multiprocessing.reduction import steal_handle
-
-from numpy import save
 import tensorflow.compat.v1 as tf
 shuffle_data = __import__('2-shuffle_data').shuffle_data
 
