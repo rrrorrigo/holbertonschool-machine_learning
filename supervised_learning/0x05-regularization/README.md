@@ -1,6 +1,8 @@
 # 0x05. Regularization
 
-![](https://holbertonintranet.s3.amazonaws.com/uploads/medias/2019/6/689c11afbc30eaa89b50.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIARDDGGGOU5BHMTQX4%2F20220118%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20220118T123649Z&X-Amz-Expires=86400&X-Amz-SignedHeaders=host&X-Amz-Signature=4be88ec95c8d72b31964209eba6a2fba9012412d13819168765700cebebc3b20)
+
+
+![](https://holbertonintranet.s3.amazonaws.com/uploads/medias/2019/6/689c11afbc30eaa89b50.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIARDDGGGOU5BHMTQX4%2F20220524%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20220524T221728Z&X-Amz-Expires=86400&X-Amz-SignedHeaders=host&X-Amz-Signature=8667ef3e8e3e27a5645b614eceba0f0f1741cf5491afb52c19369e647d295074)
 
 ## Resources
 
@@ -9,7 +11,7 @@
 -   [Regularization (mathematics)](https://intranet.hbtn.io/rltoken/G22TZHYwwb0PwlAuEZdDEQ "Regularization (mathematics)")
 -   [An Overview of Regularization Techniques in Deep Learning](https://intranet.hbtn.io/rltoken/Mao_NUBBiwm0Qh8b-axAgw "An Overview of Regularization Techniques in Deep Learning")  **(up to  `A case study on MNIST data with keras`  excluded)**
 -   [L2 Regularization and Back-Propagation](https://intranet.hbtn.io/rltoken/AY80ruaSMDL_AGnjZOpWGQ "L2 Regularization and Back-Propagation")
--   [Intuitions on L1 and L2 Regularisation](https://intranet.hbtn.io/rltoken/ZXrrY-WfmHVBcNF5cxUBrQ "Intuitions on L1 and L2 Regularisation")
+-   [Intuitions on L1 and L2 Regularisation](https://intranet.hbtn.io/rltoken/f1j-PvYQPs6gzGo2A5qd-w "Intuitions on L1 and L2 Regularisation")
 -   [Analysis of Dropout](https://intranet.hbtn.io/rltoken/huRNIkxWr5OV1Tit658LcQ "Analysis of Dropout")
 -   [Early stopping](https://intranet.hbtn.io/rltoken/4YMCmw41ovvYtMvr-Wl7LA "Early stopping")
 -   [How to use early stopping properly for training deep neural network?](https://intranet.hbtn.io/rltoken/t6UPkGJXD_nK7TfGwE9Rig "How to use early stopping properly for training deep neural network?")
@@ -35,7 +37,7 @@
 
 ## Learning Objectives
 
-At the end of this project, you are expected to be able to  [explain to anyone](https://intranet.hbtn.io/rltoken/azsJWgYhQ9fC0zfQ2nwyZQ "explain to anyone"),  **without the help of Google**:
+At the end of this project, you are expected to be able to  [explain to anyone](https://intranet.hbtn.io/rltoken/4PhfZCY9Y3zm8juKr_cSxg "explain to anyone"),  **without the help of Google**:
 
 ### General
 
@@ -71,6 +73,7 @@ At the end of this project, you are expected to be able to  [explain to anyone](
 ## Tasks
 
 ### 0. L2 Regularization Cost
+
 
 
 Write a function  `def l2_reg_cost(cost, lambtha, weights, L, m):`  that calculates the cost of a neural network with L2 regularization:
@@ -109,14 +112,10 @@ ubuntu@alexa-ml:~/0x05-regularization$
 
 ```
 
-**Repo:**
-
--   GitHub repository:  `holbertonschool-machine_learning`
--   Directory:  `supervised_learning/0x05-regularization`
--   File:  `0-l2_reg_cost.py`
 
 
 ### 1. Gradient Descent with L2 Regularization
+
 
 
 Write a function  `def l2_reg_gradient_descent(Y, weights, cache, alpha, lambtha, L):`  that updates the weights and biases of a neural network using gradient descent with L2 regularization:
@@ -204,14 +203,9 @@ ubuntu@alexa-ml:~/0x05-regularization$
 
 ```
 
-**Repo:**
-
--   GitHub repository:  `holbertonschool-machine_learning`
--   Directory:  `supervised_learning/0x05-regularization`
--   File:  `1-l2_reg_gradient_descent.py`
-
 
 ### 2. L2 Regularization Cost
+
 
 
 Write the function  `def l2_reg_cost(cost):`  that calculates the cost of a neural network with L2 regularization:
@@ -270,14 +264,11 @@ ubuntu@alexa-ml:~/0x05-regularization$
 
 ```
 
-**Repo:**
 
--   GitHub repository:  `holbertonschool-machine_learning`
--   Directory:  `supervised_learning/0x05-regularization`
--   File:  `2-l2_reg_cost.py`
 
 
 ### 3. Create a Layer with L2 Regularization
+
 
 
 Write a function  `def l2_reg_create_layer(prev, n, activation, lambtha):`  that creates a  `tensorflow`  layer that includes L2 regularization:
@@ -329,14 +320,10 @@ ubuntu@alexa-ml:~/0x05-regularization$
 
 ```
 
-**Repo:**
-
--   GitHub repository:  `holbertonschool-machine_learning`
--   Directory:  `supervised_learning/0x05-regularization`
--   File:  `3-l2_reg_create_layer.py`
 
 
 ### 4. Forward Propagation with Dropout
+
 
 
 Write a function  `def dropout_forward_prop(X, weights, L, keep_prob):`  that conducts forward propagation using Dropout:
@@ -451,14 +438,11 @@ ubuntu@alexa-ml:~/0x05-regularization$
 
 ```
 
-**Repo:**
 
--   GitHub repository:  `holbertonschool-machine_learning`
--   Directory:  `supervised_learning/0x05-regularization`
--   File:  `4-dropout_forward_prop.py`
 
 
 ### 5. Gradient Descent with Dropout
+
 
 
 Write a function  `def dropout_gradient_descent(Y, weights, cache, alpha, keep_prob, L):`  that updates the weights of a neural network with Dropout regularization using gradient descent:
@@ -542,14 +526,10 @@ ubuntu@alexa-ml:~/0x05-regularization$
 
 ```
 
-**Repo:**
-
--   GitHub repository:  `holbertonschool-machine_learning`
--   Directory:  `supervised_learning/0x05-regularization`
--   File:  `5-dropout_gradient_descent.py`
 
 
 ### 6. Create a Layer with Dropout
+
 
 
 Write a function  `def dropout_create_layer(prev, n, activation, keep_prob):`  that creates a layer of a neural network using dropout:
@@ -591,14 +571,11 @@ ubuntu@alexa-ml:~/0x05-regularization$
 
 ```
 
-**Repo:**
 
--   GitHub repository:  `holbertonschool-machine_learning`
--   Directory:  `supervised_learning/0x05-regularization`
--   File:  `6-dropout_create_layer.py`
 
 
 ### 7. Early Stopping
+
 
 
 Write the function  `def early_stopping(cost, opt_cost, threshold, patience, count):`  that determines if you should stop gradient descent early:
@@ -631,8 +608,10 @@ ubuntu@alexa-ml:~/0x05-regularization$
 
 ```
 
-**Repo:**
 
--   GitHub repository:  `holbertonschool-machine_learning`
--   Directory:  `supervised_learning/0x05-regularization`
--   File:  `7-early_stopping.py`
+
+
+
+
+
+
