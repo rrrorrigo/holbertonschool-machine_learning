@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Create a Layer with regularization L2"""
+"""Create a Layer with dropout"""
 
 
 import tensorflow.compat.v1 as tf
