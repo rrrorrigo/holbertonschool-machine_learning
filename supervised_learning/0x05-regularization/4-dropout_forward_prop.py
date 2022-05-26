@@ -31,7 +31,7 @@ def dropout_forward_prop(X, weights, L, keep_prob):
                                           x.shape[1]) < keep_prob, 1, 0)
         if n < L - 1:
             before_dropout = np.tanh(x)
-            dropout_result = np.multiply(before_dropout, dropout)
+            dropout_result = np.multiply(before_dropout, dropout) / keep_prob
             cache['D' + str(n + 1)] = dropout
         else:
             before_dropout = np.exp(x) / np.sum(np.exp(x), axis=0)
