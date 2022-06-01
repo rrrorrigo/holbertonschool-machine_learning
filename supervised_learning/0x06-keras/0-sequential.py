@@ -7,7 +7,6 @@ import tensorflow.keras as K
 
 def build_model(nx, layers, activations, lambtha, keep_prob):
     """Function that builds a neural network with the Keras library:
-
     nx: is the number of input features to the network
     layers: is a list containing the number of nodes in each layer of the
     network

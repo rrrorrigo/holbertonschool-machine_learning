@@ -61,7 +61,7 @@ At the end of this project, you are expected to be able to  [explain to anyone](
 -   Your files will be executed with  `numpy`  (version 1.19.2) and  `tensorflow`  (version 2.6)
 -   All your files should end with a new line
 -   The first line of all your files should be exactly  `#!/usr/bin/env python3`
--   A  `README.md`  file, at the root of the folder of the project, is 
+-   A  `README.md`  file, at the root of the folder of the project, is mandatory
 -   Your code should use the  `pycodestyle`  style (version 2.6.0)
 -   All your modules should have documentation (`python3 -c 'print(__import__("my_module").__doc__)'`)
 -   All your classes should have documentation (`python3 -c 'print(__import__("my_module").MyClass.__doc__)'`)
@@ -74,7 +74,6 @@ At the end of this project, you are expected to be able to  [explain to anyone](
 ## Tasks
 
 ### 0. Sequential
-
 
 
 Write a function  `def build_model(nx, layers, activations, lambtha, keep_prob):`  that builds a neural network with the Keras library:
@@ -139,7 +138,6 @@ ubuntu@alexa-ml:~/0x06-keras$
 ### 1. Input
 
 
-
 Write a function  `def build_model(nx, layers, activations, lambtha, keep_prob):`  that builds a neural network with the Keras library:
 
 -   `nx`  is the number of input features to the network
@@ -200,9 +198,7 @@ ubuntu@alexa-ml:~/0x06-keras$
 
 
 
-
 ### 2. Optimize
-
 
 
 Write a function  `def optimize_model(network, alpha, beta1, beta2):`  that sets up Adam optimization for a keras model with categorical crossentropy loss and accuracy metrics:
@@ -240,9 +236,7 @@ ubuntu@alexa-ml:~/0x06-keras$
 
 
 
-
 ### 3. One Hot
-
 
 
 Write a function  `def one_hot(labels, classes=None):`  that converts a label vector into a one-hot matrix:
@@ -279,7 +273,6 @@ ubuntu@alexa-ml:~/0x06-keras$
 
 
 ### 4. Train
-
 
 
 Write a function  `def train_model(network, data, labels, batch_size, epochs, verbose=True, shuffle=False):`  that trains a model using mini-batch gradient descent:
@@ -354,9 +347,7 @@ ubuntu@alexa-ml:~/0x06-keras$
 
 
 
-
 ### 5. Validate
-
 
 
 Based on  `4-train.py`, update the function  `def train_model(network, data, labels, batch_size, epochs, validation_data=None, verbose=True, shuffle=False):`  to also analyze validaiton data:
@@ -523,7 +514,6 @@ ubuntu@alexa-ml:~/0x06-keras$
 ### 7. Learning Rate Decay
 
 
-
 Based on  `6-train.py`, update the function  `def train_model(network, data, labels, batch_size, epochs, validation_data=None, early_stopping=False, patience=0, learning_rate_decay=False, alpha=0.1, decay_rate=1, verbose=True, shuffle=False):`  to also train the model with learning rate decay:
 
 -   `learning_rate_decay`  is a boolean that indicates whether learning rate decay should be used
@@ -624,7 +614,6 @@ ubuntu@alexa-ml:~/0x06-keras$
 ### 8. Save Only the Best
 
 
-
 Based on  `7-train.py`, update the function  `def train_model(network, data, labels, batch_size, epochs, validation_data=None, early_stopping=False, patience=0, learning_rate_decay=False, alpha=0.1, decay_rate=1, save_best=False, filepath=None, verbose=True, shuffle=False):`  to also save the best iteration of the model:
 
 -   `save_best`  is a boolean indicating whether to save the model after each epoch if it is the best
@@ -718,9 +707,7 @@ ubuntu@alexa-ml:~/0x06-keras$
 
 
 
-
 ### 9. Save and Load Model
-
 
 
 Write the following functions:
@@ -1215,9 +1202,7 @@ ubuntu@alexa-ml:~/0x06-keras$
 
 
 
-
 ### 10. Save and Load Weights
-
 
 
 Write the following functions:
@@ -1571,9 +1556,7 @@ ubuntu@alexa-ml:~/0x06-keras$
 
 
 
-
 ### 11. Save and Load Configuration
-
 
 
 Write the following functions:
@@ -1713,9 +1696,7 @@ ubuntu@alexa-ml:~/0x06-keras$
 
 
 
-
 ### 12. Test
-
 
 
 Write a function  `def test_model(network, data, labels, verbose=True):`  that tests a neural network:
@@ -1754,9 +1735,7 @@ ubuntu@alexa-ml:~/0x06-keras$
 
 
 
-
 ### 13. Predict
-
 
 
 Write a function  `def predict(network, data, verbose=False):`  that makes a prediction using a neural network:
