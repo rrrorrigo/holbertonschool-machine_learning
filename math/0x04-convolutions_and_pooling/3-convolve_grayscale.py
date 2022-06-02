@@ -48,7 +48,7 @@ def convolve_grayscale(images, kernel, padding='same', stride=(1, 1)):
     if type(padding) is tuple:
         ph, pw = padding
         h, w = (h + 2 * ph - kh) // sh + 1, (w + 2 * pw - kw) // sw + 1
-        convolveImage = np.zeros(shape=images.shape)
+        convolveImage = np.zeros((m, h, w))
         img = np.pad(images, pad_width=((0, 0), (ph, ph), (pw, pw)),
                      mode='constant',
                      constant_values=0)
