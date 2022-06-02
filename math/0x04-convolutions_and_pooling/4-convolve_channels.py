@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-""""""
+"""Colvolve channels"""
 
 
 import numpy as np
@@ -7,7 +7,6 @@ import numpy as np
 
 def convolve_channels(images, kernel, padding='same', stride=(1, 1)):
     """Function that performs a convolution on images with channels:
-
     images is a numpy.ndarray with shape (m, h, w, c) containing multiple
     images
         m is the number of images
@@ -28,7 +27,6 @@ def convolve_channels(images, kernel, padding='same', stride=(1, 1)):
     stride is a tuple of (sh, sw)
         sh is the stride for the height of the image
         sw is the stride for the width of the image
-
     Returns: a numpy.ndarray containing the convolved images"""
     m, h, w = images.shape[:-1]
     kh, kw = kernel.shape[:-1]
@@ -37,7 +35,8 @@ def convolve_channels(images, kernel, padding='same', stride=(1, 1)):
     img = images
 
     if padding == 'same':
-        ph, pw = int(((kh - 1) / 2) / sh), int(((kw - 1) / 2) / sw)
+        ph = ((h - 1) * sh + kh - h) // 2 + 1
+        pw = ((w - 1) * sw + kw - w) // 2 + 1
         convolveImage = np.zeros(shape=images.shape)
         img = np.pad(images, pad_width=((0, 0), (ph, ph), (pw, pw)),
                      mode='constant',
@@ -47,7 +46,8 @@ def convolve_channels(images, kernel, padding='same', stride=(1, 1)):
         convolveImage = np.zeros(shape=(m, h, w))
     if type(padding) is tuple:
         ph, pw = padding
-        convolveImage = np.zeros(shape=images.shape)
+        h, w = (h + 2 * ph - kh) // sh + 1, (w + 2 * pw - kw) // sw + 1
+        convolveImage = np.zeros((m, h, w))
         img = np.pad(images, pad_width=((0, 0), (ph, ph), (pw, pw)),
                      mode='constant',
                      constant_values=0)
