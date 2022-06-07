@@ -28,7 +28,7 @@ def convolve_channels(images, kernel, padding='same', stride=(1, 1)):
         sh is the stride for the height of the image
         sw is the stride for the width of the image
     Returns: a numpy.ndarray containing the convolved images"""
-    m, h, w = images.shape[:-1]
+    m, h, w, c = images.shape
     kh, kw = kernel.shape[:-1]
     sh, sw = stride
 
@@ -37,8 +37,8 @@ def convolve_channels(images, kernel, padding='same', stride=(1, 1)):
     if padding == 'same':
         ph = ((h - 1) * sh + kh - h) // 2 + 1
         pw = ((w - 1) * sw + kw - w) // 2 + 1
-        convolveImage = np.zeros(shape=images.shape)
-        img = np.pad(images, pad_width=((0, 0), (ph, ph), (pw, pw)),
+        convolveImage = np.zeros(shape=(m, h, w))
+        img = np.pad(images, pad_width=((0, 0), (ph, ph), (pw, pw), (0, 0)),
                      mode='constant',
                      constant_values=0)
     if padding == 'valid':
@@ -48,7 +48,7 @@ def convolve_channels(images, kernel, padding='same', stride=(1, 1)):
         ph, pw = padding
         h, w = (h + 2 * ph - kh) // sh + 1, (w + 2 * pw - kw) // sw + 1
         convolveImage = np.zeros((m, h, w))
-        img = np.pad(images, pad_width=((0, 0), (ph, ph), (pw, pw)),
+        img = np.pad(images, pad_width=((0, 0), (ph, ph), (pw, pw), (0, 0)),
                      mode='constant',
                      constant_values=0)
 
