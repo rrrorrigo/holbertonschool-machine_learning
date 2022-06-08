@@ -35,7 +35,7 @@ def pool_forward(A_prev, kernel_shape, stride=(1, 1), mode='max'):
 
     pooled_image = np.zeros((m, ih, iw, c))
 
-    func = (lambda x, ax: np.max(x, axis=ax), lambda x, ax: np.average(x, ax))
+    func = (lambda x, ax: np.max(x, axis=ax), lambda x, ax: np.mean(x, axis=ax))
 
     pool_mode = func[0] if mode == 'max' else func[1]
 
