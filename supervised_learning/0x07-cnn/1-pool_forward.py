@@ -40,13 +40,12 @@ def pool_forward(A_prev, kernel_shape, stride=(1, 1), mode='max'):
 
     pool_mode = func[0] if mode == 'max' else func[1]
 
-    for z in range(c):
-        for y in range(ih):
-            for x in range(iw):
-                y0 = y * sh
-                y1 = y0 + kh
-                x0 = x * sw
-                x1 = x0 + kw
-                pooled_image[:, y, x, z] = pool_mode(images[:, y0:y1, x0:x1, z],
-                                                  (1, 2))
+    for y in range(ih):
+        for x in range(iw):
+            y0 = y * sh
+            y1 = y0 + kh
+            x0 = x * sw
+            x1 = x0 + kw
+            pooled_image[:, y, x] = pool_mode(images[:, y0:y1, x0:x1],
+                                              (1, 2))
     return pooled_image
