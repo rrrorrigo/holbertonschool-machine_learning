@@ -31,7 +31,7 @@ def pool_forward(A_prev, kernel_shape, stride=(1, 1), mode='max'):
     kh, kw = kernel_shape
     sh, sw = stride
 
-    ih, iw = (h - kh) // sh + 1, (w - kw) // sh + 1
+    ih, iw = (h - kh) // sh + 1, (w - kw) // sw + 1
 
     pooled_image = np.zeros((m, ih, iw, c))
 
