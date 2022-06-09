@@ -37,8 +37,8 @@ def conv_forward(A_prev, W, b, activation, padding="same", stride=(1, 1)):
     sh, sw = stride
 
     if padding == 'same':
-        ph = ((h - 1) * sh + kh - h) // 2 + 1
-        pw = ((w - 1) * sw + kw - w) // 2 + 1
+        ph = int(np.ceil(((h - 1) * sh + kh - h) / 2))
+        pw = int(np.ceil(((w - 1) * sw + kw - w) / 2))
         output = np.zeros((m, h, w, c_new))
         img = np.pad(images, pad_width=((0, 0), (ph, ph), (pw, pw), (0, 0)),
                      mode='constant',
