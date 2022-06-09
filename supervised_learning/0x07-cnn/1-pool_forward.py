@@ -38,7 +38,10 @@ def pool_forward(A_prev, kernel_shape, stride=(1, 1), mode='max'):
     func = (lambda x, ax: np.max(x, axis=ax),
             lambda x, ax: np.mean(x, axis=ax))
 
-    pool_mode = func[0] if mode == 'max' else func[1]
+    if mode == 'max':
+        pool_mode = func[0]
+    if mode == 'avg':
+        pool_mode = func[1]
 
     for y in range(ih):
         for x in range(iw):
