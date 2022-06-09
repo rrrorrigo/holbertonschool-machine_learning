@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-""""""
+"""convolution backward"""
 
 
 import numpy as np
@@ -60,7 +60,7 @@ def conv_backward(dZ, A_prev, W, b, padding="same", stride=(1, 1)):
 
     dA = np.zeros(A_prev.shape)
     dW = np.zeros(W.shape)
-    db = np.sum(dZ, axis=(0, 1, 2))
+    db = np.sum(dZ, axis=(0, 1, 2), keepdims=True)
 
     dA_pad = np.pad(A_prev, pad_width=((0, 0), (ph, ph), (pw, pw), (0, 0)),
                     mode='constant',
