@@ -71,18 +71,20 @@ def conv_backward(dZ, A_prev, W, b, padding="same", stride=(1, 1)):
     for img in range(m):
         A_img = dA_pad[img]
         dA_img = dA_pad[img]
-        for z in range(ic):
-            for y in range(ih):
-                for x in range(iw):
-                    y0 = y * sh
+        for row in range(ih):
+            for col in range(iw):
+                for ch in range(c_new):
+                    y0 = row * sh
                     y1 = y0 + kh
-                    x0 = x * sw
+                    x0 = col * sw
                     x1 = x0 + kw
 
-                    dA_img[x0:x1, y0:y1] += W[..., z] * dZ[img, x, y, z]
-                    dW[..., z] += A_img[x0:x1, y0:y1, :] * dZ[img, x, y, z]
-        if padding == 'same':
-            dA[img, ...] += dA_img[ph:-ph, pw:-pw]
-        if padding == 'valid':
-            dA[img, ...] += dA_img
+                    slice_A = A_img[y0:y1, x0:x1, :]
+                    aux = W[:, :, :, ch] * dZ[img, row, col, ch]
+                    dA_img[y0:y1, x0:x1] += aux
+                    dW[:, :, :, ch] += slice_A * dZ[img, row, col, ch]
+        if padding == "same":
+            dA[img, :, :, :] += dA_img[ph: -ph, pw: - pw]
+        if padding == "valid":
+            dA[img, :, :, :] += dA_img
     return dA, dW, db
