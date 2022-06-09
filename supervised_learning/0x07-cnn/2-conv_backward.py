@@ -79,8 +79,8 @@ def conv_backward(dZ, A_prev, W, b, padding="same", stride=(1, 1)):
                     x0 = x * sw
                     x1 = x0 + kw
 
-                    dA_img[y0:y1, x0:x1] += W[..., z] * dZ[img, y, x, z]
-                    dW[..., z] += A_img[y0:y1, x0:x1, :] * dZ[img, y, x, z]
+                    dA_img[x0:x1, y0:y1] += W[..., z] * dZ[img, x, y, z]
+                    dW[..., z] += A_img[x0:x1, y0:y1, :] * dZ[img, x, y, z]
         if padding == 'same':
             dA[img, ...] += dA_img[ph:-ph, pw:-pw]
         if padding == 'valid':
