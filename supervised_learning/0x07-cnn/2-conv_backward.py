@@ -35,7 +35,6 @@ def conv_backward(dZ, A_prev, W, b, padding="same", stride=(1, 1)):
 
     Returns: the partial derivatives with respect to the previous layer
     (dA_prev), the kernels (dW), and the biases (db), respectively"""
-    images = A_prev
     m, h, w, c = A_prev.shape
     m, ih, iw, ic = dZ.shape
     kh, kw, c_prev, c_new = W.shape
@@ -45,31 +44,24 @@ def conv_backward(dZ, A_prev, W, b, padding="same", stride=(1, 1)):
     if padding == 'same':
         ph = int(np.ceil(((h - 1) * sh + kh - h) / 2))
         pw = int(np.ceil(((w - 1) * sw + kw - w) / 2))
-        img = np.pad(images, pad_width=((0, 0), (ph, ph), (pw, pw), (0, 0)),
-                     mode='constant',
-                     constant_values=0)
     if padding == 'valid':
         h, w = int((h - kh) / sh + 1), int((w - kw) / sw + 1)
-        img = images
     if type(padding) is tuple:
         ph, pw = padding
         h, w = (h + 2 * ph - kh) // sh + 1, (w + 2 * pw - kw) // sw + 1
-        img = np.pad(images, pad_width=((0, 0), (ph, ph), (pw, pw), (0, 0)),
-                     mode='constant',
-                     constant_values=0)
 
     dA = np.zeros(A_prev.shape)
     dW = np.zeros(W.shape)
     db = np.sum(dZ, axis=(0, 1, 2), keepdims=True)
 
-    dA_pad = np.pad(A_prev, pad_width=((0, 0), (ph, ph), (pw, pw), (0, 0)),
+    A_pad = np.pad(A_prev, pad_width=((0, 0), (ph, ph), (pw, pw), (0, 0)),
                     mode='constant',
                     constant_values=0)
     dA_pad = np.pad(dA, ((0, 0), (ph, ph), (pw, pw), (0, 0)),
                     mode="constant", constant_values=(0, 0))
 
     for img in range(m):
-        A_img = dA_pad[img]
+        A_img = A_pad[img]
         dA_img = dA_pad[img]
         for row in range(ih):
             for col in range(iw):
