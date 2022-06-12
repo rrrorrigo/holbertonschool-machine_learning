@@ -29,7 +29,8 @@ def pool_backward(dA, A_prev, kernel_shape, stride=(1, 1), mode='max'):
     mode is a string containing either max or avg, indicating whether to
     perform maximum or average pooling, respectively
 
-    Returns: the partial derivatives with respect to the previous layer (dA_prev)"""
+    Returns: the partial derivatives with respect to the previous layer
+    (dA_prev)"""
     m, h_new, w_new, c_new = dA.shape
     kh, kw = kernel_shape
     sh, sw = stride
