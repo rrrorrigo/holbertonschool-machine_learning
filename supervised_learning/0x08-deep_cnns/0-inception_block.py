@@ -24,12 +24,18 @@ def inception_block(A_prev, filters):
     All convolutions inside the inception block use a rectified linear
     activation (ReLU)
     Returns: the concatenated output of the inception block"""
-    f1 = K.layers.Conv2D(filters[0], (1, 1), activation='relu', padding="same")(A_prev)
-    f3r = K.layers.Conv2D(filters[1], (1, 1), activation='relu', padding="same")(A_prev)
-    f3 = K.layers.Conv2D(filters[2], (3, 3), activation='relu', padding="same")(f3r)
-    f5r = K.layers.Conv2D(filters[3], (1, 1), activation='relu', padding="same")(A_prev)
-    f5 = K.layers.Conv2D(filters[4], (5, 5), activation='relu', padding="same")(f5r)
+    f1 = K.layers.Conv2D(filters[0], (1, 1), activation='relu',
+                         padding="same")(A_prev)
+    f3r = K.layers.Conv2D(filters[1], (1, 1), activation='relu',
+                         padding="same")(A_prev)
+    f3 = K.layers.Conv2D(filters[2], (3, 3), activation='relu',
+                         padding="same")(f3r)
+    f5r = K.layers.Conv2D(filters[3], (1, 1), activation='relu',
+                          padding="same")(A_prev)
+    f5 = K.layers.Conv2D(filters[4], (5, 5), activation='relu',
+                         padding="same")(f5r)
     fmp = K.layers.MaxPooling2D((3, 3), strides=(1, 1), padding="same")(A_prev)
-    fpp = K.layers.Conv2D(filters[5], (1, 1), activation='relu', padding="same")(fmp)
+    fpp = K.layers.Conv2D(filters[5], (1, 1), activation='relu',
+                          padding="same")(fmp)
 
     return K.layers.Concatenate()([f1, f3, f5, fpp])
