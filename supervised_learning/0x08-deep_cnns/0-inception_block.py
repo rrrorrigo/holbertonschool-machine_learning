@@ -34,7 +34,8 @@ def inception_block(A_prev, filters):
                           padding="same")(A_prev)
     f5 = K.layers.Conv2D(filters[4], (5, 5), activation='relu',
                          padding="same")(f5r)
-    fmp = K.layers.MaxPooling2D((3, 3), strides=(1, 1), padding="same")(A_prev)
+    fmp = K.layers.MaxPooling2D((3, 3), strides=(1, 1),
+                                padding="same")(A_prev)
     fpp = K.layers.Conv2D(filters[5], (1, 1), activation='relu',
                           padding="same")(fmp)
 
