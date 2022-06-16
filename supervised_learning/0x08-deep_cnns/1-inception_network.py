@@ -18,12 +18,14 @@ def inception_network():
     x = K.Input(shape=(224, 224, 3))
     layer1 = K.layers.Conv2D(64, (7, 7), strides=(2, 2), padding='same',
                              activation='relu')(x)
-    layer2 = K.layers.MaxPooling2D((3, 3), strides=(2, 2), padding='same')(layer1)
-    layer3 = K.layers.Conv2D(64, (3, 3), strides=(1, 1), padding='same',
+    layer2 = K.layers.MaxPooling2D((3, 3), strides=(2, 2),
+                                   padding='same')(layer1)
+    layer3 = K.layers.Conv2D(64, (1, 1), strides=(1, 1), padding='same',
                              activation='relu')(layer2)
     layer4 = K.layers.Conv2D(192, (3, 3), strides=(1, 1), padding='same',
                              activation='relu')(layer3)
-    layer4 = K.layers.MaxPooling2D((3, 3), strides=(2, 2), padding='same')(layer4)
+    layer4 = K.layers.MaxPooling2D((3, 3), strides=(2, 2),
+                                   padding='same')(layer4)
 
     # Inception 3a
     Y = [64, 96, 128, 16, 32, 32]
