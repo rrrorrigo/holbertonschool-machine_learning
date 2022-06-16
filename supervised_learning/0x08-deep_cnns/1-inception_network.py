@@ -73,8 +73,7 @@ def inception_network():
 
     layer26 = K.layers.Dropout(.40)(layer25)
 
-    linear = K.activations.linear(layer26)
-    output = K.layers.Dense(1000, activation='softmax')(linear)
+    output = K.layers.Dense(1000, activation='softmax')(layer26)
 
     model = K.Model(x, output)
 
