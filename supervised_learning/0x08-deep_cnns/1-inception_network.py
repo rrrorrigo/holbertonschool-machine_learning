@@ -79,6 +79,6 @@ def inception_network():
     output = K.layers.Dense(1000, activation='softmax',
                             kernel_initializer=init)(layer26)
 
-    model = K.Model(x, output)
+    model = K.Model(x, outputs=output)
 
     return model
