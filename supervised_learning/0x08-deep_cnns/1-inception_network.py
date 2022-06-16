@@ -16,56 +16,69 @@ def inception_network():
 
     Returns: the keras model"""
     init = K.initializers.he_normal()
-    X = K.Input(shape=(224, 224, 3))
-    conv0 = K.layers.Conv2D(64, kernel_size=7, strides=(2, 2), padding="same",
-                            kernel_initializer=init, activation="relu")(X)
+    x = K.Input(shape=(224, 224, 3))
+    layer1 = K.layers.Conv2D(64, (7, 7), strides=(2, 2), padding='same',
+                             kernel_initializer=init, activation='relu')(x)
+    layer2 = K.layers.MaxPooling2D((3, 3), strides=(2, 2),
+                                   padding='same')(layer1)
+    layer3 = K.layers.Conv2D(64, (1, 1), strides=(1, 1), padding='same',
+                             kernel_initializer=init,
+                             activation='relu')(layer2)
+    layer4 = K.layers.Conv2D(192, (3, 3), strides=(1, 1), padding='same',
+                             kernel_initializer=init,
+                             activation='relu')(layer3)
+    layer4 = K.layers.MaxPooling2D((3, 3), strides=(2, 2),
+                                   padding='same')(layer4)
 
-    max_pool0 = K.layers.MaxPooling2D(pool_size=(3, 3), strides=(2, 2),
-                                      padding="same")(conv0)
+    # Inception 3a
+    Y = [64, 96, 128, 16, 32, 32]
+    layer5 = inception_block(layer4, Y)
 
-    conv1R = K.layers.Conv2D(64, kernel_size=1, strides=(1, 1), padding="same",
-                             kernel_initializer=init, activation="relu")
-    conv1R = conv1R(max_pool0)
+    # Inception 3b
+    Y = [128, 128, 192, 32, 96, 64]
+    layer7 = inception_block(layer5, Y)
 
-    conv1 = K.layers.Conv2D(192, kernel_size=3, strides=(1, 1), padding="same",
-                            kernel_initializer=init, activation="relu")
-    conv1 = conv1(conv1R)
+    layer9 = K.layers.MaxPooling2D((3, 3), strides=(2, 2),
+                                   padding='same')(layer7)
 
-    max_pool1 = K.layers.MaxPooling2D(pool_size=(3, 3), strides=(2, 2),
-                                      padding="same")(conv1)
+    # Inception 4a
+    Y = [192, 96, 208, 16, 48, 64]
+    layer10 = inception_block(layer9, Y)
 
-    incep0 = inception_block(max_pool1, [64, 96, 128, 16, 32, 32])
+    # Inception 4b
+    Y = [160, 112, 224, 24, 64, 64]
+    layer12 = inception_block(layer10, Y)
 
-    incep1 = inception_block(incep0, [128, 128, 192, 32, 96, 64])
+    # Inception 4c
+    Y = [128, 128, 256, 24, 64, 64]
+    layer14 = inception_block(layer12, Y)
 
-    max_pool2 = K.layers.MaxPooling2D(pool_size=(3, 3), strides=(2, 2),
-                                      padding="same")(incep1)
+    # Inception 4d
+    Y = [112, 144, 288, 32, 64, 64]
+    layer16 = inception_block(layer14, Y)
 
-    incep2 = inception_block(max_pool2, [192, 96, 208, 16, 48, 64])
+    # Inception 4e
+    Y = [256, 160, 320, 32, 128, 128]
+    layer18 = inception_block(layer16, Y)
 
-    incep3 = inception_block(incep2, [160, 112, 224, 24, 64, 64])
+    layer20 = K.layers.MaxPooling2D((3, 3), strides=(2, 2),
+                                    padding='same')(layer18)
 
-    incep4 = inception_block(incep3, [128, 128, 256, 24, 64, 64])
+    # Inception 5a
+    Y = [256, 160, 320, 32, 128, 128]
+    layer21 = inception_block(layer20, Y)
 
-    incep5 = inception_block(incep4, [112, 144, 288, 32, 64, 64])
+    # Inception 5b
+    Y = [384, 192, 384, 48, 128, 128]
+    layer23 = inception_block(layer21, Y)
 
-    incep6 = inception_block(incep5, [256, 160, 320, 32, 128, 128])
+    layer25 = K.layers.AveragePooling2D((7, 7), strides=1)(layer23)
 
-    max_pool2 = K.layers.MaxPooling2D(pool_size=(3, 3), strides=(2, 2),
-                                      padding="same")(incep6)
+    layer26 = K.layers.Dropout(rate=0.4)(layer25)
 
-    incep7 = inception_block(max_pool2, [256, 160, 320, 32, 128, 128])
+    output = K.layers.Dense(1000, activation='softmax',
+                            kernel_initializer=init)(layer26)
 
-    incep8 = inception_block(incep7, [384, 192, 384, 48, 128, 128])
-
-    avg_pool0 = K.layers.AveragePooling2D(pool_size=(7, 7), strides=(1, 1),
-                                          padding="valid")(incep8)
-
-    dropout = K.layers.Dropout(rate=0.4)(avg_pool0)
-
-    softmax = K.layers.Dense(units=1000, activation="softmax",
-                             kernel_initializer=init)(dropout)
-
-    model = K.Model(inputs=X, outputs=softmax)
+    model = K.Model(x, outputs=output)
 
     return model
