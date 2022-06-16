@@ -15,14 +15,17 @@ def inception_network():
     rectified linear activation (ReLU)
 
     Returns: the keras model"""
+    init = K.initializers.he_normal()
     x = K.Input(shape=(224, 224, 3))
     layer1 = K.layers.Conv2D(64, (7, 7), strides=(2, 2), padding='same',
-                             activation='relu')(x)
+                             kernel_initializer=init, activation='relu')(x)
     layer2 = K.layers.MaxPooling2D((3, 3), strides=(2, 2),
                                    padding='same')(layer1)
     layer3 = K.layers.Conv2D(64, (1, 1), strides=(1, 1), padding='same',
+                             kernel_initializer=init,
                              activation='relu')(layer2)
     layer4 = K.layers.Conv2D(192, (3, 3), strides=(1, 1), padding='same',
+                             kernel_initializer=init,
                              activation='relu')(layer3)
     layer4 = K.layers.MaxPooling2D((3, 3), strides=(2, 2),
                                    padding='same')(layer4)
@@ -73,7 +76,8 @@ def inception_network():
 
     layer26 = K.layers.Dropout(.40)(layer25)
 
-    output = K.layers.Dense(1000, activation='softmax')(layer26)
+    output = K.layers.Dense(1000, activation='softmax',
+                            kernel_initializer=init)(layer26)
 
     model = K.Model(x, output)
 
