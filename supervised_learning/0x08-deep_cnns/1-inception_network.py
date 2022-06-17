@@ -78,5 +78,4 @@ def inception_network():
                             kernel_initializer=init)(layer26)
 
     model = K.Model(x, outputs=output)
-
     return model
