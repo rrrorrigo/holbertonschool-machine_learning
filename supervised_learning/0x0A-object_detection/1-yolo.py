@@ -89,6 +89,7 @@ class Yolo:
             cx = np.tile(np.arange(grid_w), grid_h)
             cx = cx.reshape(grid_w, grid_w, 1)
             cy = np.tile(np.arange(grid_h), grid_h)
+            cy = cy.reshape(grid_h, grid_h).T
             cy = cy.reshape(grid_h, grid_h, 1)
 
             # prediction of each coordinate
