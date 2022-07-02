@@ -2,7 +2,7 @@
 """Initialize Yolo"""
 
 
-import keras as K
+import tensorflow.keras as K
 
 
 class Yolo:
