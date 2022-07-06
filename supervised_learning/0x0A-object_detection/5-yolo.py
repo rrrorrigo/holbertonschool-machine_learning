@@ -292,7 +292,7 @@ class Yolo:
         image_shape = np.zeros((ni, 2), dtype=np.int)
         for i, image in enumerate(images):
             resized = cv2.resize(image, (w, h), interpolation=cv2.INTER_CUBIC)
-            image_shape[i] = image.shape[:2]
+            image_shape[i] = [image.shape[0], image.shape[1]]
 
             rescale = resized / 255
             resized_images[i] = rescale
