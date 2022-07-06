@@ -17,7 +17,4 @@ if __name__ == '__main__':
     box_classes = np.array([1, 7, 16])
     ind = 0
     for i, name in enumerate(image_paths):
-        if "dog.jpg" in name:
-            ind = i
-            break
-    yolo.show_boxes(images[i], boxes, box_classes, box_scores, "dog.jpg")
+        yolo.show_boxes(images[i], boxes, box_classes, box_scores, "dog.jpg")
