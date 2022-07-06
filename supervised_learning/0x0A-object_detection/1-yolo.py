@@ -2,7 +2,7 @@
 """Initialize Yolo"""
 
 
-import tensorflow.keras as K
+import keras as K
 import numpy as np
 
 
@@ -101,8 +101,8 @@ class Yolo:
             # Normalize values
             prediction_x /= grid_w
             prediction_y /= grid_h
-            prediction_w /= self.model.input.shape[1]
-            prediction_h /= self.model.input.shape[2]
+            prediction_w /= self.model.input.shape[1].value
+            prediction_h /= self.model.input.shape[2].value
 
             x1 = (prediction_x - (prediction_w / 2)) * iw
             y1 = (prediction_y - (prediction_h / 2)) * ih
