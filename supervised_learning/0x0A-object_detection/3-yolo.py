@@ -104,8 +104,8 @@ class Yolo:
             # Normalize values
             prediction_x /= grid_w
             prediction_y /= grid_h
-            prediction_w /= self.model.input.shape[1].value
-            prediction_h /= self.model.input.shape[2].value
+            prediction_w /= self.model.input.shape[1]
+            prediction_h /= self.model.input.shape[2]
 
             x1 = (prediction_x - (prediction_w / 2)) * iw
             y1 = (prediction_y - (prediction_h / 2)) * ih
@@ -216,7 +216,9 @@ class Yolo:
             nms_boxes.append(boxes)
             nms_classes.append(classes)
             nms_scores.append(scores)
-            
+        nms_boxes = np.concatenate(nms_boxes)
+        nms_classes = np.concatenate(nms_classes)
+        nms_scores = np.concatenate(nms_scores)
         
         return (nms_boxes, nms_classes, nms_scores)
 
