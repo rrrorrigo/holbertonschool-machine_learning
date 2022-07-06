@@ -198,9 +198,6 @@ class Yolo:
         nms_scores = []
         cls = np.unique(box_classes)
 
-
-        
-
         for obj in cls:
             i = np.where(obj == box_classes)
             boxes = filtered_boxes[i]
@@ -219,7 +216,7 @@ class Yolo:
         nms_boxes = np.concatenate(nms_boxes)
         nms_classes = np.concatenate(nms_classes)
         nms_scores = np.concatenate(nms_scores)
-        
+
         return (nms_boxes, nms_classes, nms_scores)
 
     def calculate_nms(self, boxes, scores):
