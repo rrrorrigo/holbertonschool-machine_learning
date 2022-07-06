@@ -288,7 +288,7 @@ class Yolo:
                 2 => (image_height, image_width)"""
         _, w, h, _ = self.model.input.shape
         ni = len(images)
-        resized_images = np.zeros((ni, w, h, 3))
+        resized_images = np.zeros((ni, h, w, 3))
         image_shape = np.zeros((ni, 2), dtype=np.int)
         for i, image in enumerate(images):
             resized = cv2.resize(image, (w, h), interpolation=cv2.INTER_CUBIC)
