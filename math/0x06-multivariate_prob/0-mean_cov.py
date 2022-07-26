@@ -22,10 +22,10 @@ def mean_cov(X):
         of the data set"""
     if len(X.shape) != 2:
         raise TypeError('X must be a 2D numpy.ndarray')
-    if len(X[0]) < 2:
-        raise ValueError('X must contain multiple data points')
     data, dim = X.shape
-    mean = np.mean(X[:], axis=0)
+    if data < 2:
+        raise ValueError('X must contain multiple data points')
+    mean = np.mean(X[:], axis=0).reshape(1, dim)
     x = X - mean
     cov = (x.T @ x) / (data - 1)
     return mean, cov
