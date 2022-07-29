@@ -21,7 +21,7 @@ def pca(X, var=0.95):
     diag_sum = np.cumsum(sigma)
 
     # normalize diagonal sum
-    diag_sum =  diag_sum / diag_sum[-1]
+    diag_sum = diag_sum / diag_sum[-1]
 
     i = np.min(np.where(diag_sum >= var))
 
