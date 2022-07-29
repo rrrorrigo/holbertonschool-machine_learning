@@ -14,10 +14,10 @@ def pca(X, ndim):
     ndim is the new dimensionality of the transformed X
     Returns: T, a numpy.ndarray of shape (n, ndim) containing the transformed
     version of X"""
-    X_meaned = X - np.mean(X, axis=0)
+    X = X - np.mean(X, axis=0)
 
-    lsv, sigma, rsv = np.linalg.svd(X_meaned)
+    U, S, Vt = np.linalg.svd(X)
 
-    pca_matrix = np.matmul(lsv[..., :ndim], np.diag(sigma[..., :ndim]))
+    Tr = np.matmul(U[..., :ndim], np.diag(S[..., :ndim]))
 
-    return pca_matrix
+    return Tr
