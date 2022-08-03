@@ -46,9 +46,9 @@ def kmeans(X, k, iterations=1000):
         cluster in C that each data point belongs to"""
     if type(X) is not np.ndarray or len(X.shape) != 2:
         return None, None
-    if k <= 0 or type(k) is not int:
+    if type(k) is not int or k <= 0:
         return None, None
-    if iterations <= 0:
+    if type(iterations) is not int or iterations <= 0:
         return None, None
     clusters = initialize(X, k)
     n, d = X.shape
