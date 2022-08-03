@@ -18,6 +18,9 @@ def variance(X, C):
         return None
     if type(C) is not np.ndarray or len(C.shape) != 2:
         return None
+    k, d = C.shape
+    if type(k) is not int or k <= 0:
+        return None
     distance = np.sqrt(np.sum((X - C[:, np.newaxis]) ** 2, axis=2))
     var = np.sum(np.sum(distance.min(axis=0)**2))
 
