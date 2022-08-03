@@ -5,7 +5,7 @@
 import numpy as np
 
 
-def variance(X, C): 
+def variance(X, C):
     """Function that calculates the total intra-cluster variance for
     a data set:
 
