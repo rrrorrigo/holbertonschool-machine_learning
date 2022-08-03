@@ -63,6 +63,8 @@ def kmeans(X, k, iterations=1000):
                 clusters[j] = initialize(X, 1)
             else:
                 clusters[j] = X[closest_i == j].mean(axis=0)
+        x = np.sqrt(np.sum((X - clusters[:, np.newaxis]) ** 2, axis=2))
+        closest_i = np.argmin(x, axis=0)
         if np.all(clusters_copy == clusters):
             break
     return clusters, closest_i
