@@ -2,9 +2,8 @@
 """Initialize cluster centroids"""
 
 
-from mimetypes import init
 import numpy as np
-from sklearn import cluster
+
 
 def initialize(X, k):
     """Function that initializes cluster centroids for K-means:
