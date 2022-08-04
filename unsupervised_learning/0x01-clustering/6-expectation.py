@@ -20,6 +20,15 @@ def expectation(X, pi, m, S):
         g is a numpy.ndarray of shape (k, n) containing the posterior
         probabilities for each data point in each cluster
         l is the total log likelihood"""
+    if type(X) is not np.ndarray or len(X.shape) != 2:
+        return None, None
+    if type(pi) is not np.ndarray or len(pi.shape) != 1:
+        return None, None
+    if type(m) is not np.ndarray or len(m.shape) != 2:
+        return None, None
+    if type(S) is not np.ndarray or len(S.shape) != 3:
+        return None, None
+
     n, d = X.shape
     k = pi.shape[0]
     responsabilities_iter = np.zeros((k, n))
