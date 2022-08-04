@@ -31,6 +31,16 @@ def expectation(X, pi, m, S):
 
     n, d = X.shape
     k = pi.shape[0]
+
+    if k > n:
+        return None, None
+    if d != m.shape[1] or d != S.shape[1] or d != S.shape[2]:
+        return None, None
+    if k != m.shape[0] or k != S.shape[0]:
+        return None, None
+    if not np.isclose([np.sum(pi)], [1])[0]:
+        return None, None
+
     responsabilities_iter = np.zeros((k, n))
 
     for i in range(k):
