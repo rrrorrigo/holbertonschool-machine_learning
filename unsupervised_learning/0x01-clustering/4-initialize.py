@@ -18,6 +18,10 @@ def initialize(X, k):
         for each cluster, initialized with K-means
         S is a numpy.ndarray of shape (k, d, d) containing the covariance
         matrices for each cluster, initialized as identity matrices"""
+    if type(X) is not np.ndarray or len(X.shape) != 2:
+        return None, None, None
+    if type(k) is not int or k <= 0:
+        return None, None, None
     n, d = X.shape
     m = kmeans(X, k)[0]
     pi = np.tile(1 / k, (k,))
