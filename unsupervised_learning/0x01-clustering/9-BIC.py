@@ -36,6 +36,19 @@ def BIC(X, kmin=1, kmax=None, iterations=1000, tol=1e-5, verbose=False):
         likelihood for each cluster size tested
         b is a numpy.ndarray of shape (kmax - kmin + 1) containing the BIC
         value for each cluster size tested"""
+    if not isinstance(X, np.ndarray) or X.ndim != 2:
+        return None, None, None, None
+    if not isinstance(kmin, int) or kmin <= 0 or X.shape[0] <= kmin:
+        return None, None, None, None
+    if not isinstance(kmax, int) or kmax <= 0 or X.shape[0] <= kmax:
+        return None, None, None, None
+    if not isinstance(iterations, int) or iterations <= 0:
+        return None, None, None, None
+    if not isinstance(tol, float) or tol < 0:
+        return None, None, None, None
+    if not isinstance(verbose, bool):
+        return None, None, None, None
+
     n, d = X.shape
     all_pi = []
     all_m = []
