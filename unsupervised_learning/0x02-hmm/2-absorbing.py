@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-""""""
+"""Absorbing markov chain"""
 
 
 import numpy as np
