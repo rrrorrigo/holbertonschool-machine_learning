@@ -26,15 +26,15 @@ def regular(P):
 
     S = np.full((1, n), (1 / n))
     new_P = np.copy(P)
-    Sx = np.zeros((1, n))
+    Sx = S
 
-    while not np.all(S == Sx):
+    while True:
         new_P = np.matmul(new_P, P)
 
         if np.any(new_P <= 0):
             return None
 
         S = np.matmul(S, P)
+        if np.all(S == Sx):
+            return S
         Sx = S
-
-    return S
