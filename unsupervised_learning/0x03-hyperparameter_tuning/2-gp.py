@@ -2,7 +2,6 @@
 """Gaussian process"""
 
 
-from tkinter.tix import X_REGION
 import numpy as np
 
 
