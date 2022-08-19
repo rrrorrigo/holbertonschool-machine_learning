@@ -51,9 +51,9 @@ class BayesianOptimization:
 
         sample = np.min(self.gp.Y) if self.minimize else np.max(self.gp.Y)
 
+        imp = (sample - mu if self.minimize else mu - sample) - self.xsi
         # class that avoid floating point number error
         with np.errstate(divide='warn'):
-            imp = (sample - mu if self.minimize else mu - sample) - self.xsi
             Z = imp / sigma
             EI = imp * norm.cdf(Z) + sigma * norm.pdf(Z)
             EI[sigma == 0.0] = 0.0
