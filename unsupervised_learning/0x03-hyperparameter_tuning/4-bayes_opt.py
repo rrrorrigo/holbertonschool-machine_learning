@@ -48,7 +48,7 @@ class BayesianOptimization:
             the expected improvement of each potential sample"""
         mu, sigma = self.gp.predict(self.X_s)
 
-        sample = np.min(self.gp.Y) if self.minimize else np.max(self.gp.Y)
+        sample = np.amin(self.gp.Y) if self.minimize else np.amax(self.gp.Y)
 
         imp = (sample - mu if self.minimize else mu - sample) - self.xsi
         # class that avoid floating point number error
