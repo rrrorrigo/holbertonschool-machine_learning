@@ -2,6 +2,7 @@
 """Gaussian process"""
 
 
+from scipy.stats import norm
 import numpy as np
 GP = __import__('2-gp').GaussianProcess
 
@@ -45,8 +46,6 @@ class BayesianOptimization:
             the next best sample point
             EI is a numpy.ndarray of shape (ac_samples,) containing
             the expected improvement of each potential sample"""
-        from scipy.stats import norm
-
         mu, sigma = self.gp.predict(self.X_s)
 
         sample = np.min(self.gp.Y) if self.minimize else np.max(self.gp.Y)
