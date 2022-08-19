@@ -64,13 +64,12 @@ class BayesianOptimization:
         """Function that optimizes the black-box function
 
         iterations is the maximum number of iterations to perform
-        
+
         Returns: X_opt, Y_opt
             X_opt is a numpy.ndarray of shape (1,) representing
             the optimal point
             Y_opt is a numpy.ndarray of shape (1,) representing
             the optimal function value"""
-
         X_opt, Y_opt = 0, 0
         for i in range(iterations):
             X_best = self.acquisition()[0]
