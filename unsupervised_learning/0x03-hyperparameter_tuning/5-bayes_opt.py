@@ -83,6 +83,5 @@ class BayesianOptimization:
                 X_opt, Y_opt = X_best, Y_best
             if not self.minimize and Y_best > Y_opt:
                 X_opt, Y_opt = X_best, Y_best
-        self.gp.X = self.gp.X[:-1]
 
         return X_opt, Y_opt
