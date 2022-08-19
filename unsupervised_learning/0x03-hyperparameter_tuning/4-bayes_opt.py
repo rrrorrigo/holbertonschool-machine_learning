@@ -56,10 +56,9 @@ class BayesianOptimization:
             imp = mu - mu_sample_opt - self.xsi
 
         # class that avoid floating point number error
-        with np.errstate(divide='warn'):
-            Z = imp / sigma
-            EI = imp * norm.cdf(Z) + sigma * norm.pdf(Z)
-            EI[sigma == 0.0] = 0.0
+        Z = imp / sigma
+        EI = imp * norm.cdf(Z) + sigma * norm.pdf(Z)
+        EI[sigma == 0.0] = 0.0
 
         X_next = self.X_s[np.argmax(EI)]
         return X_next, EI
