@@ -5,7 +5,7 @@
 import tensorflow.keras as keras
 
 
-def autoencoder(input_dims, hidden_layers, latent_dims, lambtha):
+def autoencoder(input_dims, hidden_layers, latent_dims):
     """Function that creates a sparse autoencoder:
 
     input_dims is an integer containing the dimensions of the model input
