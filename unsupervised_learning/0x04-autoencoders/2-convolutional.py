@@ -32,10 +32,10 @@ def autoencoder(input_dims, filters, latent_dims):
                                           activation='relu')(encod_input)
         else:
             encoder = keras.layers.Conv2D(lay, kernel_size=(3, 3),
-                                         padding='same',
-                                         activation='relu')(encoder)
+                                          padding='same',
+                                          activation='relu')(encoder)
         encoder = keras.layers.MaxPool2D((2, 2),
-                                     padding='same')(encoder)
+                                         padding='same')(encoder)
 
     # latent layer
     latent = encoder
@@ -43,21 +43,21 @@ def autoencoder(input_dims, filters, latent_dims):
 
     # decoder layers
     decoder = keras.layers.Conv2D(filters[-1],
-                                 kernel_size=(3, 3),
-                                 padding='same',
-                                 activation='relu')(decoder_input)
+                                  kernel_size=(3, 3),
+                                  padding='same',
+                                  activation='relu')(decoder_input)
     decoder = keras.layers.UpSampling2D((2, 2))(decoder)
 
     for i, reverse_lay in enumerate(reversed(filters[:-2])):
         decoder = keras.layers.Conv2D(reverse_lay,
-                                     kernel_size=(3, 3),
-                                     padding='same',
-                                     activation='relu')(decoder)
+                                      kernel_size=(3, 3),
+                                      padding='same',
+                                      activation='relu')(decoder)
         decoder = keras.layers.UpSampling2D((2, 2))(decoder)
     decoder = keras.layers.Conv2D(filters[0],
-                               kernel_size=(3, 3),
-                               padding='valid',
-                               activation='relu')(decoder)
+                                  kernel_size=(3, 3),
+                                  padding='valid',
+                                  activation='relu')(decoder)
     decoder = keras.layers.UpSampling2D((2, 2))(decoder)
     decoder_output = keras.layers.Conv2D(input_dims[-1],
                                          kernel_size=(3, 3),
