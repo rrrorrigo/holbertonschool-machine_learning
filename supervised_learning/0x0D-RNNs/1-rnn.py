@@ -27,8 +27,8 @@ def rnn(rnn_cell, X, h_0):
     h_next = np.zeros((t + 1, m, h))
     y = np.zeros((t, m, y_size))
 
-    h_next[0, ...], y[0, ...] = rnn_cell.forward(h_0, X[0, :, :])
+    h_next[0, ...] = h_0
 
-    for i in range(1, t):
-        h_next[i, ...], y[i, ...] = rnn_cell.forward(h_next[i, ...], X[i, ...])
+    for i in range(t):
+        h_next[i + 1, ...], y[i, ...] = rnn_cell.forward(h_next[i, ...], X[i, ...])
     return h_next, y
