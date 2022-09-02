@@ -36,4 +36,4 @@ def deep_rnn(rnn_cells, X, h_0):
             else:
                 Y = np.array([y])
                 Y = np.repeat(Y, X.shape[0], axis=0)
-    return h_next, y
+    return h_next, Y
