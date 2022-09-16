@@ -15,11 +15,11 @@ def clean_data(data=pd.DataFrame()):
     Return: Same DataFrame without unnecesary data"""
     data['Timestamp'] = pd.to_datetime(data['Timestamp'], unit='s')
     data = data.set_index('Timestamp')
-    # format the dataset to one row per hour
+    # format the data to one row per hour
     data = data.resample("H").agg({
-        "Open": "mean",
+        "Open": "first",
         "High": "mean",
-        "Close": "mean",
+        "Close": "last",
         "Low": "mean",
         "Volume_(BTC)": "sum",
         "Volume_(Currency)": "sum",
@@ -28,6 +28,7 @@ def clean_data(data=pd.DataFrame()):
     data = data.drop(['Low', 'High', 'Volume_(BTC)', 'Weighted_Price'],
                      axis=1).dropna()
     data = data.reindex(columns=['Open', 'Close', 'Volume_(Currency)'])
+    data = data.iloc[-int((data.shape[0]/2)):]
     print(data.shape)
     return data.to_numpy()
 
@@ -36,11 +37,11 @@ def save_data(data=np.ndarray):
     """Function that saves preprocessed data
 
     data: Data preprocessed to save"""
-    df = pd.DataFrame(data, columns=['Open',
-                                     'High',
-                                     'Volume_(BTC)',
-                                     'Volume_(Currency)'])
-    df.to_csv('data/preprocessed_data.csv')
+    data = pd.DataFrame(data, columns=['Open',
+                                       'High',
+                                       'Volume_(BTC)',
+                                       'Volume_(Currency)'])
+    data.to_csv('data/preprocessed_data.csv')
 
 
 def X_Y_data(data=np.ndarray, steps=24):
@@ -70,17 +71,15 @@ def preprocess_data(data=np.ndarray):
     # 70% for train data, 30% for validation data
     data_len = data.__len__()
     train_idx = math.ceil(data_len * 0.7)
-    val_idx = int(data_len * 0.2) + train_idx
 
-    data = (data - data.min()) / (data.max() - data.min())
+    mean = np.mean(data, axis=0)
+    stddev = np.std(data, axis=0)
+    data = (data - mean) / stddev
 
     X_train_data = data[:train_idx]
-    X_validate_data = data[train_idx:val_idx]
-    X_test_data = data[val_idx:]
+    X_validate_data = data[train_idx:]
 
     X_train_data, Y_train_data = X_Y_data(X_train_data, 24)
     X_validate_data, Y_validate_data = X_Y_data(X_validate_data, 24)
-    X_test_data, Y_test_data = X_Y_data(X_test_data, 24)
 
-    return X_train_data, X_validate_data, X_test_data,\
-           Y_train_data, Y_validate_data, Y_test_data
+    return X_train_data, X_validate_data, Y_train_data, Y_validate_data

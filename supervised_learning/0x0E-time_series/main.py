@@ -13,10 +13,10 @@ if __name__ == '__main__':
     path = 'data/bitstampUSD_1-min_data_2012-01-01_to_2020-04-22.csv'
     df = pd.read_csv(path)
     data = clean_data(df)
-    X_train, X_validate, X_test, Y_train, Y_val, Y_test = preprocess_data(data)
+    X_train, X_validate, Y_train, Y_val = preprocess_data(data)
     batch_size = 256
 
-    forecasting = Forecasting(X_train, X_validate, X_test, Y_train, Y_val, Y_test, batch_size)
+    forecasting = Forecasting(X_train, X_validate, Y_train, Y_val, batch_size)
 
     model = forecasting.create()
 
@@ -31,16 +31,16 @@ if __name__ == '__main__':
     # Make a single-step price prediction following 24h of data
     window_num = 0
     for batch_num, (x, y) in enumerate(forecasting.val_dataset.take(3)):
-          title = string.format(window_num, batch_num)
-          forecasting.plot_2(x[window_num, :, -2].numpy(),
-                 y[window_num].numpy(),
-                 model.predict(x)[window_num],
-                 title)
+        title = string.format(window_num, batch_num)
+        forecasting.plot_2(x[window_num, :, -2].numpy(),
+                           y[window_num].numpy(),
+                           model.predict(x)[window_num],
+                           title)
 
     # Make predictions over "batch_size" x 24h timeframes
     for batch_num, (x, y) in enumerate(forecasting.val_dataset.take(3)):
         title = string.format(batch_size, batch_num)
         forecasting.plot_3(y.numpy(),
-               model.predict(x).reshape(-1),
-               title)
+                           model.predict(x).reshape(-1),
+                           title)
         batch_num += 1

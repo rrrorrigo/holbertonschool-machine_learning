@@ -10,25 +10,29 @@ import matplotlib.pyplot as plt
 class Forecasting:
     """Keras model that create, trains and validate"""
 
-    def __init__(self, train_X, val_X, test_X, train_Y, val_Y, test_Y, batch_size=256):
+    def __init__(self, train_X, val_X, train_Y, val_Y, batch_size=256):
         """Class constructor"""
+        self.train_X = train_X
         self.train_dataset = tf.data.Dataset.from_tensor_slices(
-            (train_X, train_Y)).shuffle(train_X.shape[0]).batch(batch_size).repeat()
+            (train_X, train_Y)).shuffle(train_X.shape[0])\
+            .batch(batch_size).repeat()
         self.val_dataset = tf.data.Dataset.from_tensor_slices(
             (val_X, val_Y)).batch(batch_size).repeat()
-        self.test_dataset = tf.data.Dataset.from_tensor_slices(
-            (test_X, test_Y)).batch(batch_size).repeat()
         self.batch_size = batch_size
 
     def create(self):
         """Function that creates Forecasting model"""
         model = K.models.Sequential()
-        model.add(K.layers.Bidirectional(K.layers.LSTM(64, activation='relu')))
+        model.add(K.layers.Bidirectional(
+                  K.layers.LSTM(64, activation='relu',
+                                input_shape=self.train_X.shape[1:])))
         model.add(K.layers.Dense(1))
-        model.compile(optimizer='adam', loss='mse')
+        model.compile(loss='mse',
+                      optimizer='adam')
         return model
 
-    def train(self, steps=800, epochs=10, model=K.models.Sequential(), val_steps=80):
+    def train(self, steps=800, epochs=10,
+              model=K.models.Sequential(), val_steps=80):
         """Function that trains Forecasting model"""
         history = model.fit(self.train_dataset, epochs=epochs,
                             steps_per_epoch=steps,
@@ -41,7 +45,7 @@ class Forecasting:
     def plot_0(self, df, title):
         """function that plots Price at Close vs. Timestamp"""
 
-        plt.figure(figsize=(8,6))
+        plt.figure(figsize=(8, 6))
         plt.plot(df)
         plt.title(title)
         plt.xlabel('Timestamp')
@@ -52,7 +56,7 @@ class Forecasting:
     def plot_1(self, history, title):
         """function that plots the loss results of the model"""
 
-        plt.figure(figsize=(8,6))
+        plt.figure(figsize=(8, 6))
         plt.plot(history.history['loss'], 'o-', mfc='none',
                  markersize=10, label='Train')
         plt.plot(history.history['val_loss'], 'o-', mfc='none',
