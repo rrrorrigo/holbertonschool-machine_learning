@@ -5,15 +5,34 @@
 import numpy as np
 
 
-def P(references, sentence):
+def create_ngram(sentence, n):
+    """Function that create ngram from sentence"""
+    list_grams_cand = []
+    for i in range(len(sentence)):
+        last = i + n
+        begin = i
+        if last >= len(sentence) + 1:
+            break
+        aux = sentence[begin: last]
+        result = ' '.join(aux)
+        list_grams_cand.append(result)
+    return list_grams_cand
+
+
+def P(references, grams, n):
     """Function that calculates the probability
 
     P = common ngram / candidate ngram"""
+    reference_grams = []
     words = {}
 
-    for r in references:
+    for reference in references:
+        list_grams = create_ngram(reference, n)
+        reference_grams.append(list_grams)
+
+    for r in reference_grams:
         for word in r:
-            if word in sentence and word not in words.keys():
+            if word in grams and word not in words.keys():
                 words[word] = 1
 
     total = sum(words.values())
@@ -33,16 +52,17 @@ def BP(references, sentence):
     return bp
 
 
-def uni_bleu(references, sentence):
-    """Function that calculates the unigram BLEU score for a sentence
+def ngram_bleu(references, sentence, n):
+    """Function that calculates the n-gram BLEU score for a sentence:
 
     references is a list of reference translations
         each reference translation is a list of the words in the translation
     sentence is a list containing the model proposed sentence
 
     Returns: the unigram BLEU score"""
+    gram = create_ngram(sentence, n)
     bp = BP(references, sentence)
-    len_s = len(sentence)
-    p = P(references, sentence)
+    len_s = len(gram)
+    p = P(references, gram, n)
     BLEU = bp * np.exp(np.log(p / len_s))
     return BLEU
