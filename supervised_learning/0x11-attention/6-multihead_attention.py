@@ -15,7 +15,7 @@ class MultiHeadAttention(tf.keras.layers.Layer):
         dm is an integer representing the dimensionality of the model
         h is an integer representing the number of heads
         dm is divisible by h"""
-        super().__init__()
+        super(MultiHeadAttention, self).__init__()
         self.h = h
         self.dm = dm
         self.depth = dm // h
