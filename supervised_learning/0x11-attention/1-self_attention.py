@@ -22,7 +22,7 @@ class SelfAttention(tf.keras.layers.Layer):
             encoder hidden states
             V - a Dense layer with 1 units, to be applied to the tanh
             of the sum of the outputs of W and U"""
-        super(SelfAttention, self).__init__()
+        super().__init__()
         self.W = tf.keras.layers.Dense(units)
         self.U = tf.keras.layers.Dense(units)
         self.V = tf.keras.layers.Dense(1)
