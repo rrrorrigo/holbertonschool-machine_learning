@@ -25,7 +25,7 @@ def sdp_attention(Q, K, V, mask=None):
         weights a tensor with its last two dimensions as
         (..., seq_len_q, seq_len_v) containing the attention weights"""
     qk = tf.matmul(Q, K, transpose_b=True)
-    
+
     K_float32 = tf.cast(tf.shape(K)[-1], tf.float32)
 
     scaled = qk / tf.math.sqrt(K_float32)
