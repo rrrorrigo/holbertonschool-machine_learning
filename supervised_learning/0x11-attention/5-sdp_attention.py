@@ -33,7 +33,7 @@ def sdp_attention(Q, K, V, mask=None):
     if mask is not None:
         scaled += (mask * -1e9)
 
-    weight = tf.nn.softmax(mask, axis=-1)
+    weight = tf.nn.softmax(scaled, axis=-1)
 
     output = tf.matmul(weight, V)
 
