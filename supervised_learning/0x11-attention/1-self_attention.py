@@ -46,6 +46,6 @@ class SelfAttention(tf.keras.layers.Layer):
         score = self.V(tf.nn.tanh(encoder + decoder))
 
         weights = tf.nn.softmax(score, axis=1)
-        context = tf.reduce_sum(weights * s_expand, axis = 1)
+        context = tf.reduce_sum(weights * s_expand, axis=1)
 
         return context, weights
