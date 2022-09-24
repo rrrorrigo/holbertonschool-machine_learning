@@ -31,7 +31,7 @@ def sdp_attention(Q, K, V, mask=None):
     mask = qk / tf.math.sqrt(K_float32)
 
     if mask is not None:
-        mask *= -1e9
+        mask += (mask * -1e9)
 
     weight = tf.nn.softmax(mask, axis=-1)
 
