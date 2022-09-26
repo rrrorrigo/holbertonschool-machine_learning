@@ -33,7 +33,7 @@ class Decoder(tf.keras.layers.Layer):
 
     def call(self, x, encoder_output, training, look_ahead_mask, padding_mask):
         """Function that performs embedding
-        
+
         x - a tensor of shape (batch, target_seq_len, dm)containing the
         input to the decoder
         encoder_output - a tensor of shape (batch, input_seq_len, dm)
