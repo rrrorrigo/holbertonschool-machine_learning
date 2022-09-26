@@ -2,8 +2,6 @@
 """Transformer encoder block"""
 
 
-from asyncio import DatagramProtocol
-from tkinter import HIDDEN
 import tensorflow as tf
 MultiHeadAttention = __import__('6-multihead_attention').MultiHeadAttention
 
