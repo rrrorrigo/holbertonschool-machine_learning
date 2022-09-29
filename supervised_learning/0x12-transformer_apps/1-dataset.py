@@ -46,3 +46,20 @@ class Dataset:
                            .build_from_corpus(
                             (en.numpy() for pt, en in data), 2**15)
         return tokenizer_pt, tokenizer_en
+
+    def encode(self, pt, en):
+        """Function that encodes a translation into tokens
+
+        pt is the tf.Tensor containing the Portuguese sentence
+        en is the tf.Tensor containing the corresponding English sentence
+
+        Returns: pt_tokens, en_tokens
+            pt_tokens is a np.ndarray containing the Portuguese tokens
+            en_tokens is a np.ndarray. containing the English tokens"""
+        pt_vocab_size = self.tokenizer_pt.vocab_size
+        en_vocab_size = self.tokenizer_en.vocab_size
+        pt_tokens = [pt_vocab_size] + self.tokenizer_pt.encode(pt.numpy()) + \
+                    [pt_vocab_size + 1]
+        en_tokens = [en_vocab_size] + self.tokenizer_en.encode(pt.numpy()) + \
+                    [en_vocab_size + 1]
+        return pt_tokens, en_tokens
